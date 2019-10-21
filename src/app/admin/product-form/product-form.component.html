@@ -1,4 +1,4 @@
-<div class="row" *ngIf="product">
+<div class="row">
     <div class="col-md-6">
             <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
                 <div class="form-group">
@@ -11,7 +11,7 @@
                 <label for="price">Price</label>
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text">$</span>
+                        <span class="input-group-text">€</span>
                     </div>
                     <input #price="ngModel" [(ngModel)]="product.price" name="price" type="number" id="price" class="form-control" required [min]="0">
                 </div> 
@@ -36,7 +36,7 @@
                     <div *ngIf="imageUrl.errors.required">Image URL is required.</div>
                     <div *ngIf="imageUrl.errors.url">Please provide a valid image URL.</div>
                 </div>  
-                <button *ngIf="creatingNewProduct; else updatingProduct" class="btn btn-primary" type="submit" >Create Product</button>
+                <button *ngIf="creatingNewProduct; else updatingProduct" class="btn btn-primary mt-2" type="submit" >Add This Product</button>
                 <ng-template #updatingProduct>
                     <button  class="btn btn-primary" type="button" (click)="updateProduct()">Update Product</button>
                     <button  class="btn btn-danger ml-2" type="button" (click)="deleteProduct()">Delete Product</button>
@@ -46,16 +46,12 @@
                 -->
             </form>
     </div>
-    <div class="col-md-6">
-        <div class="card" style="width: 18rem;">
-            <img *ngIf="product.imageUrl" [src]="imageUrl.value" class="card-img-top" alt="">
-            <div class="card-body">
-                <h5 class="card-title">{{product.name}} </h5>
-                <p class="card-text">{{product.price | currency:'USD' }}</p>
-                <p *ngIf="category.value" class="card-text">Category: {{product.category}}</p>                
-            </div>
-        </div>
-    </div>
+    <div *ngIf="(product | json) != '{}'" class="col">
+        <h5>
+            Product Preview
+        </h5>
+        <product-card [product]="product" [show-actions]=false></product-card>
+    </div>    
 </div>
 
     

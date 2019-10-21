@@ -32,7 +32,7 @@ export class AuthService {
     let provider = new firebase.auth.GoogleAuthProvider();
     // provider.addScope('profile');
     // provider.addScope('email');
-    this.afAuth.auth.signInWithPopup(provider)  
+    this.afAuth.auth.signInWithRedirect(provider)  
   }
 
   loginFacebook(){

@@ -9,13 +9,18 @@ import { Product } from '../models/product';
   providedIn: 'root'
 })
 export class ProductService {
+  
 
   constructor(private db: AngularFireDatabase) { }
 
   saveProduct(product){
-    this.db.list('/products').push(product);
-    console.log(`Saved Product: ${product}`);
+    this.db.list('/products').push(product).then(res=>{      
+      this.db.object('/products/'+res.key)
+      .update({id: res.key});
+    })
   }
+
+  
 
   updateProduct(product, id){
     console.log(`Updating Product: ${product}`);

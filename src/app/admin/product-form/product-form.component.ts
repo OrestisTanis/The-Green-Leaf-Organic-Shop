@@ -25,12 +25,14 @@ export class ProductFormComponent implements OnInit, OnDestroy{
   constructor(private categoryService: CategoryService, private productService: ProductService, private router: Router, private route:ActivatedRoute) { 
     this.categories$ = this.categoryService.getCategories().valueChanges();
     
+    
     this.id=this.route.snapshot.paramMap.get('id');
     if (this.id){
       this.subscription = this.productService.getProduct(this.id).valueChanges().subscribe(p => this.product = p);
       this.creatingNewProduct = false;
     }
     else { this.creatingNewProduct=true;}
+
   }
 
   onSubmit(f: NgForm) {

@@ -1,0 +1,21 @@
+.list-group {
+    
+    .list-group-item {
+        a {
+            text-decoration: none;            
+        }
+    }
+
+    .list-group-item.active {
+        a{
+            color: floralwhite;
+        }        
+    }
+}
+
+.sticky-top {
+    top: 80px;
+}
+
+
+
