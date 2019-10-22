@@ -1,4 +1,4 @@
-import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
 import { Injectable, OnDestroy } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { registerLocaleData } from '@angular/common';
@@ -52,23 +52,24 @@ export class ShoppingCartService implements OnDestroy {
 
   async addToCart(product: Product){
     let cartId = await this.getOrCreateCart();
-    let item$ =  this.db.object('/shopping-carts/'+cartId+"/items/"+product.id);
-    
-   item$.valueChanges().subscribe((item: ShoppingItem)=> {
-      if(item){
-        //Increase  quantity
-        console.log("Increasing quantity to "+(item.quantity+1));
-        return item$.update({quantity:item.quantity + 1})
-        
-      }
-      //else new item
-      console.log("Quantity: 1");
-      return item$.update({product, quantity: 1})
-    }
-   )
+    let item$: AngularFireObject<ShoppingItem> =  this.db.object('/shopping-carts/'+cartId+"/items/"+product.id);
+
+    item$.valueChanges().pipe(take(1))
+      .subscribe(item => {
+        if(item){
+          //Increase  quantity
+          console.log("Increasing quantity to "+(item.quantity+1));
+          return item$.update({quantity:item.quantity + 1})
+          
+        }
+        //else new item
+        console.log("Quantity: 1");
+        return item$.update({product, quantity: 1})        
+      })
+  }
     
 
-  }
+  
 
 
   ngOnDestroy() {
