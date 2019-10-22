@@ -36,7 +36,7 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
     .pipe(
       map(actions =>
         actions.map(a => ({          
-          key: a.key, ...a.payload.val() 
+          id: a.key, ...a.payload.val() 
         }))
     )).subscribe(products => {
       this.products = products;         

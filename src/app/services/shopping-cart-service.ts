@@ -1,18 +1,19 @@
+import { ShoppingCart } from './../models/shopping-cart';
+import { ShoppingItem } from './../models/shopping-item';
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
 import { Injectable, OnDestroy } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { registerLocaleData } from '@angular/common';
 import { Product } from '../models/product';
-import { Subscription } from 'rxjs';
+import { Subscription, from, Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { ShoppingItem } from '../models/shopping-item';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShoppingCartService implements OnDestroy {
-  cart: any;
-  items$: unknown;
+  cart: any;  
   subscription: Subscription;
   
   
@@ -24,19 +25,23 @@ export class ShoppingCartService implements OnDestroy {
     });
   }
 
-  private getCart(cartId: string){
-    return this.db.object('/shopping-carts/'+cartId);
+  getItem(cartId, productId: string): AngularFireObject<ShoppingItem>{
+    this.getOrCreateCart();    
+    console.log(this.db.object('/shopping-carts/'+cartId+"/items/"+productId));
+    return this.db.object('/shopping-carts/'+cartId+"/items/"+productId);
   }
   
-  getProduct(productKey){
-    return this.db.object('/shopping-carts/items/'+productKey);
+   async getCart(): Promise<Observable<ShoppingCart>> {
+    let cartId = await this.getOrCreateCart();
+   
+    let cart$:AngularFireObject<ShoppingCart> = this.db.object('/shopping-carts/'+cartId);
+    return cart$.valueChanges().pipe(
+      map(cart=>{        
+        return new ShoppingCart(cart.items);
+      })
+    );
+    
   }
-  
-
-  private addProduct(cartId: string, product: Product){
-    return this.db.object('/shopping-carts/'+cartId+"/items/"+product.id);
-  }
-
 
   private async getOrCreateCart():Promise<string>{
     let cartId = localStorage.getItem('cartID');    
@@ -49,28 +54,23 @@ export class ShoppingCartService implements OnDestroy {
       //Get the Cart
       return cartId;
   }
-
-  async addToCart(product: Product){
+  
+  async updateCart(product: Product, change: number){
     let cartId = await this.getOrCreateCart();
-    let item$: AngularFireObject<ShoppingItem> =  this.db.object('/shopping-carts/'+cartId+"/items/"+product.id);
+    let item$ = this.getItem(cartId, product.id); 
 
     item$.valueChanges().pipe(take(1))
       .subscribe(item => {
         if(item){
-          //Increase  quantity
-          console.log("Increasing quantity to "+(item.quantity+1));
-          return item$.update({quantity:item.quantity + 1})
-          
+          //Modify quantity of existing item
+          console.log("Modifying quantity to "+(item.quantity+change));
+          return item$.update({quantity:item.quantity + change})
         }
-        //else new item
+        //new item
         console.log("Quantity: 1");
-        return item$.update({product, quantity: 1})        
+        return item$.update({product, quantity:1})        
       })
   }
-    
-
-  
-
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
