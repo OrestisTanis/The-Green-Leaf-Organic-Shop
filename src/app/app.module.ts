@@ -38,6 +38,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductsFilterComponent } from './products/products-filter/products-filter.component';
 import { ProductCardComponent } from './products/product-card/product-card.component';
 import { ShoppingCartService } from './services/shopping-cart-service';
+import { ProductQuantityComponent } from './products/product-quantity/product-quantity.component';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { ShoppingCartService } from './services/shopping-cart-service';
     AdminOrdersComponent,
     ProductFormComponent,
     ProductsFilterComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    ProductQuantityComponent
   ],
   imports: [
     BrowserModule,  

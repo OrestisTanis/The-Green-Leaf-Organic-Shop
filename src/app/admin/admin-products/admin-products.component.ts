@@ -18,7 +18,7 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   products: Product[];  
   //filteredProducts: Product[];
   subscription: Subscription;  
-  displayedColumns = ["position","name","category","price","key"]
+  displayedColumns = ["position","name","category","price","id"]
 
   @ViewChild(MatSort,{static:true}) sort: MatSort;
   @ViewChild(MatPaginator,{static:true}) paginator: MatPaginator;  
@@ -50,20 +50,20 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
 
   filter(query: string){
 
-    // this.filteredProducts = (query) ?
-    //   this.products.filter(p => p.name.toLowerCase().includes(query.toLowerCase())) :
-    //   this.products;
+    this.dataSource.data = (query) ?
+    this.products.filter(p =>(p.name).toLowerCase().includes(query.toLowerCase()) || (p.category).toLowerCase().includes(query.toLowerCase())) :
+    this.products;
 
-      if (query) {
-        //this.filteredProducts = this.products.filter(p => p.name.toLowerCase().includes(query.toLowerCase()));   
-        this.dataSource.data = this.products.filter(p => 
-          (p.name).toLowerCase().includes(query.toLowerCase()) || (p.category).toLowerCase().includes(query.toLowerCase())
-        ); 
-      }
-      else {
-        //this.filteredProducts=this.products;
-        this.dataSource.data = this.products;
-      }
+      // if (query) {
+      //   //this.filteredProducts = this.products.filter(p => p.name.toLowerCase().includes(query.toLowerCase()));   
+      //   this.dataSource.data = this.products.filter(p => 
+      //     (p.name).toLowerCase().includes(query.toLowerCase()) || (p.category).toLowerCase().includes(query.toLowerCase())
+      //   ); 
+      // }
+      // else {
+      //   //this.filteredProducts=this.products;
+      //   this.dataSource.data = this.products;
+      // }
   }
 
   ngOnInit() {

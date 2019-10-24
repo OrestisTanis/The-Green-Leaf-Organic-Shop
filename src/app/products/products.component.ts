@@ -21,7 +21,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   selectedCategory: string;
   filteredProducts$ : Product[] = [];
   cart$: Observable<ShoppingCart>;
-  cartSubscription: Subscription;
+  
   quantitySum$;
 
   constructor(private productService: ProductService, private categoryService: CategoryService,
@@ -55,7 +55,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   
   ngOnDestroy() {
     this.productSubscription.unsubscribe();   
-    this.cartSubscription.unsubscribe(); 
+    
   }
 
   filterByCategory(category: string){

@@ -24,20 +24,5 @@ export class ProductCardComponent implements OnInit {
   addToCart(){
     this.cartService.updateCart(this.product,1);
   }
-
-  removeFromCart(){
-    this.cartService.updateCart(this.product,-1);
-  }
-
-  getQuantity() {
-    // console.log(this.shoppingCart);
-    if (!this.shoppingCart) return 0;    
-    let item = this.shoppingCart.items[this.product.id];
-  
-    return item ? item.quantity: 0;
-  }
-
-  
-
   
 }

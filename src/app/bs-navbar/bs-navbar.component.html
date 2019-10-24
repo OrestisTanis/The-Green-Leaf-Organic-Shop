@@ -16,7 +16,9 @@
       </ng-template>      
       <li class="nav-item">
         <a class="nav-link" routerLink="/shopping-cart">Shopping-cart
-          <span *ngIf="cart$ | async as cart" class="badge badge-warning badge-pill" >{{cart.TotalItemCount}}</span>
+          <ng-container *ngIf="cart$ | async as cart">
+            <span *ngIf="cart.TotalItemCount>0" class="badge badge-warning badge-pill" >{{cart.TotalItemCount}}</span>
+          </ng-container>
         </a>
       </li>      
       <li *ngIf="appUser; else anonymousUser" ngbDropdown class="nav-item dropdown" >
