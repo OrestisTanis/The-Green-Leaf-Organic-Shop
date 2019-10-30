@@ -1,6 +1,10 @@
 <h1>Shopping Cart</h1>
 <div *ngIf="cart$ | async as cart">
-    <p>You have {{ cart.TotalItemCount }} items in your shopping cart.</p>
+    <p> You have {{ cart.TotalItemCount }} items in your shopping cart.    
+        <button *ngIf="cart.TotalItemCount > 0" class="btn btn-sm btn-light mb-1" (click)="clearCart()" [disabled]="(cart.TotalItemCount === 0)">
+            Clear Shopping Cart
+        </button>
+    </p>
     <table class="table">
         <thead>
             <tr>
@@ -28,11 +32,7 @@
             </tr>     
         </tbody>
     </table> 
-    <button class="btn btn-sm mt-4" (click)="clearCart()" [disabled]="(cart.TotalItemCount === 0)" 
-    [ngClass]="{
-        'btn-danger': (cart.TotalItemCount > 0),
-        'btn-secondary': (cart.TotalItemCount === 0)
-    }">
-        Clear Shopping Cart
+    <button class="btn mt-4" (click)="checkOut()" [disabled]="(cart.TotalItemCount === 0)" [class.btn-primary]="(cart.TotalItemCount > 0)" routerLink="/check-out">
+        Check Out
     </button>  
 </div>

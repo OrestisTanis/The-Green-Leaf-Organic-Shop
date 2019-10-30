@@ -1,3 +1,4 @@
+import { NumbersOnlyDirective } from './directives/numbers-only-directive';
 import { ProductService } from './services/product.service';
 import { CategoryService } from './services/category.service';
 import { AdminAuthGuardService } from './services/admin-auth-guard.service';
@@ -41,6 +42,7 @@ import { ShoppingCartService } from './services/shopping-cart-service';
 import { ProductQuantityComponent } from './products/product-quantity/product-quantity.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +59,8 @@ import { ProductQuantityComponent } from './products/product-quantity/product-qu
     ProductFormComponent,
     ProductsFilterComponent,
     ProductCardComponent,
-    ProductQuantityComponent
+    ProductQuantityComponent,
+    NumbersOnlyDirective
   ],
   imports: [
     BrowserModule,  
