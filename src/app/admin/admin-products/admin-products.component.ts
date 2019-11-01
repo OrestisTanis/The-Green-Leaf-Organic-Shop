@@ -53,17 +53,6 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
     this.dataSource.data = (query) ?
     this.products.filter(p =>(p.name).toLowerCase().includes(query.toLowerCase()) || (p.category).toLowerCase().includes(query.toLowerCase())) :
     this.products;
-
-      // if (query) {
-      //   //this.filteredProducts = this.products.filter(p => p.name.toLowerCase().includes(query.toLowerCase()));   
-      //   this.dataSource.data = this.products.filter(p => 
-      //     (p.name).toLowerCase().includes(query.toLowerCase()) || (p.category).toLowerCase().includes(query.toLowerCase())
-      //   ); 
-      // }
-      // else {
-      //   //this.filteredProducts=this.products;
-      //   this.dataSource.data = this.products;
-      // }
   }
 
   ngOnInit() {

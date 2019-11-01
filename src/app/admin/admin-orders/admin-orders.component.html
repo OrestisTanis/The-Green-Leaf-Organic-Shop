@@ -1,1 +1,22 @@
-<p>admin-orders works!</p>
+<h1>Order History</h1>
+<table class="table" *ngIf="orders">
+    <thead>   
+        <tr>     
+        <th scope="col">#</th>
+        <th scope="col">Customer</th>
+        <th scope="col">Date</th>
+        <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let order of orders; let i = index">
+        <tr>
+        <th scope="row">{{i+1}}</th>
+        <td *ngIf="(order.username != (null || '')) else guest">{{order.username}}</td>
+        <ng-template #guest><td>guest</td></ng-template>
+        <td>{{order.datePlaced | date}}</td>
+        <td>
+            <a [routerLink]="['/admin/orders/', order.id]">View</a>     
+        </td>
+        </tr>
+    </tbody>
+</table>

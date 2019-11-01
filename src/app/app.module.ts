@@ -40,6 +40,9 @@ import { ProductsFilterComponent } from './products/products-filter/products-fil
 import { ProductCardComponent } from './products/product-card/product-card.component';
 import { ShoppingCartService } from './services/shopping-cart-service';
 import { ProductQuantityComponent } from './products/product-quantity/product-quantity.component';
+import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
+import { ShippingFormComponent } from './shipping-form/shipping-form.component';
+import { AdminViewOrderComponent } from './admin-view-order/admin-view-order.component';
 
 
 
@@ -60,7 +63,10 @@ import { ProductQuantityComponent } from './products/product-quantity/product-qu
     ProductsFilterComponent,
     ProductCardComponent,
     ProductQuantityComponent,
-    NumbersOnlyDirective
+    NumbersOnlyDirective,
+    ShoppingCartSummaryComponent,
+    ShippingFormComponent,
+    AdminViewOrderComponent
   ],
   imports: [
     BrowserModule,  
@@ -81,10 +87,10 @@ import { ProductQuantityComponent } from './products/product-quantity/product-qu
       {path: 'login', component: LoginComponent},
 
       {path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuardService]},
-      {path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGuardService]},    
+      {path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [AuthGuardService]},    
       {path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuardService]},
 
-      
+      {path: 'admin/orders/:id', component: AdminViewOrderComponent, canActivate: [AuthGuardService,AdminAuthGuardService]},
       {path: 'admin/products/new', component: ProductFormComponent, canActivate: [AuthGuardService,AdminAuthGuardService]},
       {path: 'admin/products/:id', component: ProductFormComponent, canActivate: [AuthGuardService,AdminAuthGuardService]},
       {path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGuardService, AdminAuthGuardService]},

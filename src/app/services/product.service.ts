@@ -19,8 +19,7 @@ export class ProductService {
 
   
 
-  updateProduct(product, id){
-    console.log(`Updating Product: ${product}`);
+  updateProduct(product, id){    
     return this.db.object('/products/'+id)
     .update(product);
     

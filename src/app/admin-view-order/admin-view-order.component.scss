@@ -1,0 +1,10 @@
+@media print
+{
+    .noprint {display:none;}
+
+    tr:nth-child(odd) td {
+        background-color: rgba(206, 206, 206, 0.247) !important;
+        -webkit-print-color-adjust: exact;
+        }
+}
+

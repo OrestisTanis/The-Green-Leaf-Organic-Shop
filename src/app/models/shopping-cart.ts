@@ -42,7 +42,7 @@ export class ShoppingCart{
       return item ? item.quantity: 0;
     }
 
-
+    
     
 
 }

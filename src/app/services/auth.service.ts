@@ -30,16 +30,12 @@ export class AuthService {
   loginGoogle(){
     this.saveCurrentUrl();
     let provider = new firebase.auth.GoogleAuthProvider();
-    // provider.addScope('profile');
-    // provider.addScope('email');
     this.afAuth.auth.signInWithRedirect(provider)  
   }
 
   loginFacebook(){
     this.saveCurrentUrl();
-    let provider = new firebase.auth.FacebookAuthProvider();
-    // provider.addScope('profile');
-    // provider.addScope('email');
+    let provider = new firebase.auth.FacebookAuthProvider();    
     this.afAuth.auth.signInWithPopup(provider)
   }
  
