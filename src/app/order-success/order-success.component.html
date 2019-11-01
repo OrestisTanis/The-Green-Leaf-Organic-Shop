@@ -1,1 +1,8 @@
-<p>order-success works!</p>
+<div class="row" *ngIf="order" >
+    <div class="col">
+        <h1> Thank you for your order!</h1>
+        <p> Hello, <span *ngIf="order.username">{{order.username}}</span>! Thank you for purchasing from our store. Your order ID is: {{order.id}} </p>
+    </div>
+</div>
+
+<admin-view-order [orderSuccess]="orderSuccess"></admin-view-order>

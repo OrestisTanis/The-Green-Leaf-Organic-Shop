@@ -17,6 +17,7 @@ import { RouterModule } from '@angular/router';
 import { MatSliderModule } from '@angular/material/slider';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort'; 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CustomFormsModule } from 'ng2-validation';
@@ -80,6 +81,7 @@ import { AdminViewOrderComponent } from './admin-view-order/admin-view-order.com
     CustomFormsModule,
     MatPaginatorModule,
     MatSortModule,
+    FontAwesomeModule,
     RouterModule.forRoot([
       {path: '', component: HomeComponent},
       {path: 'products', component: ProductsComponent},
@@ -87,7 +89,9 @@ import { AdminViewOrderComponent } from './admin-view-order/admin-view-order.com
       {path: 'login', component: LoginComponent},
 
       {path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuardService]},
-      {path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [AuthGuardService]},    
+      {path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [AuthGuardService]},   
+      
+      {path: 'my/orders/:id', component: AdminViewOrderComponent, canActivate: [AuthGuardService]},
       {path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuardService]},
 
       {path: 'admin/orders/:id', component: AdminViewOrderComponent, canActivate: [AuthGuardService,AdminAuthGuardService]},
