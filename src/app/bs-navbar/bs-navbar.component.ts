@@ -1,10 +1,11 @@
-import { Router } from '@angular/router';
+
 import { AuthService } from './../services/auth.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AppUser } from '../models/app-user';
 import { ShoppingCartService } from '../services/shopping-cart-service';
 import { Subscription, Observable } from 'rxjs';
 import { ShoppingCart } from '../models/shopping-cart';
+
 
 
 @Component({
@@ -20,7 +21,7 @@ export class BsNavbarComponent implements OnInit, OnDestroy {
 
   constructor(private auth: AuthService, 
     private shoppingCartService: ShoppingCartService,
-    private router:Router ) { 
+    ) { 
     auth.appUser$.subscribe(appUser => {
       this.appUser = appUser;
       console.log("User: "+appUser);

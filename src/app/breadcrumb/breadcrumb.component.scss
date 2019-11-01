@@ -1,0 +1,30 @@
+.arr-right.breadcrumb-item+.breadcrumb-item::before {
+    
+
+    content: "›";
+   
+    vertical-align:top;
+   
+    color: #e9e9e9;
+   
+    font-size:30px;
+   
+    line-height:18px;
+
+    margin-top:2.3px;
+    
+   
+}
+
+.fixed-top{
+    position:fixed;
+    z-index:2;
+}
+
+a{
+    color:rgb(26, 75, 30);
+}
+
+span {
+    color:rgb(244, 255, 245);
+}

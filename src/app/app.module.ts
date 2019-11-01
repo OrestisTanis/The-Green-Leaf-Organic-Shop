@@ -1,3 +1,4 @@
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { NumbersOnlyDirective } from './directives/numbers-only-directive';
 import { ProductService } from './services/product.service';
 import { CategoryService } from './services/category.service';
@@ -18,6 +19,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort'; 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {NgDynamicBreadcrumbModule} from "ng-dynamic-breadcrumb";
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CustomFormsModule } from 'ng2-validation';
@@ -47,6 +49,7 @@ import { AdminViewOrderComponent } from './admin-view-order/admin-view-order.com
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,7 +70,8 @@ import { AdminViewOrderComponent } from './admin-view-order/admin-view-order.com
     NumbersOnlyDirective,
     ShoppingCartSummaryComponent,
     ShippingFormComponent,
-    AdminViewOrderComponent
+    AdminViewOrderComponent,
+    BreadcrumbComponent
   ],
   imports: [
     BrowserModule,  
@@ -82,23 +86,216 @@ import { AdminViewOrderComponent } from './admin-view-order/admin-view-order.com
     MatPaginatorModule,
     MatSortModule,
     FontAwesomeModule,
+    NgDynamicBreadcrumbModule,
     RouterModule.forRoot([
-      {path: '', component: HomeComponent},
-      {path: 'products', component: ProductsComponent},
-      {path: 'shopping-cart', component: ShoppingCartComponent},
-      {path: 'login', component: LoginComponent},
-
-      {path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuardService]},
-      {path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [AuthGuardService]},   
-      
-      {path: 'my/orders/:id', component: AdminViewOrderComponent, canActivate: [AuthGuardService]},
-      {path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuardService]},
-
-      {path: 'admin/orders/:id', component: AdminViewOrderComponent, canActivate: [AuthGuardService,AdminAuthGuardService]},
-      {path: 'admin/products/new', component: ProductFormComponent, canActivate: [AuthGuardService,AdminAuthGuardService]},
-      {path: 'admin/products/:id', component: ProductFormComponent, canActivate: [AuthGuardService,AdminAuthGuardService]},
-      {path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGuardService, AdminAuthGuardService]},
-      {path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuardService,AdminAuthGuardService]}       
+      { 
+        path: '', component: HomeComponent,
+        data: {
+          title: 'Home',
+          breadcrumb: [
+            {
+              label: 'Home',
+              url: ''
+            }
+          ]
+        },
+      },
+        {path: 'products', component: ProductsComponent,
+        data: {
+          title: 'products',
+          breadcrumb: [
+            {
+              label: 'Products',
+              url: ''
+            }
+          ]
+        },
+      },
+      { path: 'shopping-cart', component: ShoppingCartComponent,
+        data: {
+          title: 'shopping-cart',
+          breadcrumb: [
+            {
+              label: 'Home',
+              url: '/'
+            },
+            {
+              label: 'Shopping-Cart',
+              url: '/shopping-cart'
+            }
+          ]
+        },
+      },
+      { path: 'login', component: LoginComponent,
+        data: {
+          title: 'login',
+          breadcrumb: [
+            {
+              label: 'Home',
+              url: '/'
+            },
+            {
+              label: 'Login',
+              url: '/login'
+            }
+          ]
+        },
+      },
+      { path: 'check-out', component: CheckOutComponent,
+        data: {
+          title: 'check-out',
+          breadcrumb: [
+            {
+              label: 'Home',
+              url: '/'
+            },
+            {
+              label: 'Shopping-Cart',
+              url: '/shopping-cart'
+            },
+            {
+              label: 'Check-out',
+              url: '/check-out'
+            }
+          ]
+        }, 
+      canActivate: [AuthGuardService]},
+      { path: 'order-success/:id', component: OrderSuccessComponent,
+        data: {
+          title: 'Order Success',
+          breadcrumb: [
+            {
+              label: 'Home',
+              url: '/'
+            },
+            {
+              label: 'Shopping-Cart',
+              url: '/shopping-cart'
+            },
+            {
+              label: 'Check-out',
+              url: '/check-out'
+            },
+            {
+              label: 'Order Success',
+              url: '/order-success/:id'
+            }            
+          ]
+        }, canActivate: [AuthGuardService]}, 
+      { path: 'my/orders/:id', component: AdminViewOrderComponent,      
+        data: {
+          title: 'My Orders',
+          breadcrumb: [
+            {
+              label: 'Home',
+              url: '/'
+            },
+            {
+              label: 'My Orders',
+              url: 'my/orders'
+            },
+            {
+              label: 'View Order',
+              url: 'my/orders/:id'
+            }
+          ]
+        }, canActivate: [AuthGuardService]},
+      {path: 'my/orders', component: MyOrdersComponent,      
+      data: {
+        title: 'My Orders',
+        breadcrumb: [
+          {
+            label: 'Home',
+            url: '/'
+          },
+          {
+            label: 'My Orders',
+            url: 'my/orders'
+          }
+        ]
+      }, canActivate: [AuthGuardService]},
+      {path: 'admin/orders/:id', component: AdminViewOrderComponent,      
+      data: {
+        title: 'Admin View Order',
+        breadcrumb: [
+          {
+            label: 'Home',
+            url: '/'
+          },
+          {
+            label: 'Manage Orders',
+            url: 'admin/orders'
+          },
+          {
+            label: 'View Order',
+            url: 'admin/orders/:id'
+          }
+        ]
+      }, canActivate: [AuthGuardService,AdminAuthGuardService]},
+      {path: 'admin/products/new', component: ProductFormComponent,      
+      data: {
+        title: 'New Product',
+        breadcrumb: [
+          {
+            label: 'Home',
+            url: '/'
+          },
+          {
+            label: 'Manage Products',
+            url: 'admin/products'
+          },
+          {
+            label: 'Add New Product',
+            url: 'admin/products/new'
+          }
+        ]
+      }, canActivate: [AuthGuardService,AdminAuthGuardService]},
+      {path: 'admin/products/:id', component: ProductFormComponent,      
+      data: {
+        title: 'New Product',
+        breadcrumb: [
+          {
+            label: 'Home',
+            url: '/'
+          },
+          {
+            label: 'Manage Products',
+            url: 'admin/products'
+          },
+          {
+            label: 'Edit Product',
+            url: 'admin/products/:id'
+          }
+        ]
+      }, canActivate: [AuthGuardService,AdminAuthGuardService]},
+      {path: 'admin/products', component: AdminProductsComponent,      
+      data: {
+        title: 'Admin Products',
+        breadcrumb: [
+          {
+            label: 'Home',
+            url: '/'
+          },
+          {
+            label: 'Manage Products',
+            url: 'admin/products'
+          }
+        ]
+      }, canActivate: [AuthGuardService, AdminAuthGuardService]},
+      {path: 'admin/orders', component: AdminOrdersComponent,      
+      data: {
+        title: 'Admin View Order',
+        breadcrumb: [
+          {
+            label: 'Home',
+            url: '/'
+          },
+          {
+            label: 'Manage Orders',
+            url: 'admin/orders'
+          }
+        ]
+      }, canActivate: [AuthGuardService,AdminAuthGuardService]}       
     ]),
     BrowserAnimationsModule
   ],
