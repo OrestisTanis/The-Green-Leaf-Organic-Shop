@@ -1,5 +1,5 @@
-import { UserService } from '../shared/services/user.service';
-import { AuthService } from '../shared/services/auth.service';
+import { UserService } from '../../shared/services/user.service';
+import { AuthService } from '../../shared/services/auth.service';
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { map,switchMap } from 'rxjs/operators';

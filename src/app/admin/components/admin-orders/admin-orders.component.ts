@@ -1,6 +1,6 @@
-import { UserService } from '../../shared/services/user.service';
-import { Order } from '../../shared/models/order';
-import { OrderService } from '../../shared/services/order.service';
+import { UserService } from '../../../shared/services/user.service';
+import { Order } from '../../../shared/models/order';
+import { OrderService } from '../../../shared/services/order.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';

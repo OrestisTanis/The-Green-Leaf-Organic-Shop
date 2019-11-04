@@ -1,54 +1,37 @@
-import { SharedModule } from './shared/shared.module';
-import { OrderService } from './shared/services/order.service';
-import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
-import { NumbersOnlyDirective } from './directives/numbers-only-directive';
-import { ProductService } from './shared/services/product.service';
-import { CategoryService } from './shared/services/category.service';
-import { AdminAuthGuardService } from './services/admin-auth-guard.service';
-import { UserService } from './shared/services/user.service';
-import { AuthGuardService } from './shared/services/auth-guard.service';
-import { AuthService } from './shared/services/auth.service';
-import { BrowserModule } from '@angular/platform-browser';
+import { AdminModule } from './admin/admin.module';
 import { NgModule } from '@angular/core';
-
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-
-import { RouterModule } from '@angular/router';
-
-import { MatSliderModule } from '@angular/material/slider';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort'; 
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import {NgDynamicBreadcrumbModule} from "ng-dynamic-breadcrumb";
-import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
-
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CustomFormsModule } from 'ng2-validation';
-import { AppComponent } from './app.component';
-import { environment } from 'src/environments/environment';
-import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
-import { HomeComponent } from './home/home.component';
-import { ProductsComponent } from './products/products.component';
-
-import { CheckOutComponent } from './check-out/check-out.component';
-import { OrderSuccessComponent } from './order-success/order-success.component';
-import { LoginComponent } from './login/login.component';
-import { MyOrdersComponent } from './my-orders/my-orders.component';
-import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
-import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
-import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ProductsFilterComponent } from './products/products-filter/products-filter.component';
+import { RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgbCollapseModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { NgDynamicBreadcrumbModule } from 'ng-dynamic-breadcrumb';
+import { CustomFormsModule } from 'ng2-validation';
+import { environment } from 'src/environments/environment';
 
-import { ShoppingCartService } from './services/shopping-cart-service';
-
-import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
-import { ShippingFormComponent } from './shipping-form/shipping-form.component';
 import { AdminViewOrderComponent } from './admin-view-order/admin-view-order.component';
+import { AdminAuthGuardService } from './admin/services/admin-auth-guard.service';
+import { AppComponent } from './app.component';
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
+import { CheckOutComponent } from './check-out/check-out.component';
+import { NumbersOnlyDirective } from './directives/numbers-only-directive';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
+import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { OrderSuccessComponent } from './order-success/order-success.component';
+import { ProductsFilterComponent } from './products/products-filter/products-filter.component';
+import { ProductsComponent } from './products/products.component';
+import { ShoppingCartService } from './services/shopping-cart-service';
+import { AuthGuardService } from './shared/services/auth-guard.service';
+import { SharedModule } from './shared/shared.module';
+import { ShippingFormComponent } from './shipping-form/shipping-form.component';
+import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 
@@ -63,10 +46,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
     CheckOutComponent,
     OrderSuccessComponent,
     LoginComponent,
-    MyOrdersComponent,
-    AdminProductsComponent,
-    AdminOrdersComponent,
-    ProductFormComponent,
+    MyOrdersComponent,    
     ProductsFilterComponent,    
     NumbersOnlyDirective,
     ShoppingCartSummaryComponent,
@@ -77,16 +57,13 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
   imports: [
     BrowserModule, 
     SharedModule, 
+    AdminModule,
     AngularFireModule.initializeApp(environment.firebase, 'oshop'),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     NgbModule,
-    FormsModule, 
-    MatTableModule,   
-    MatSliderModule,
+    FormsModule,
     CustomFormsModule,
-    MatPaginatorModule,
-    MatSortModule,
     FontAwesomeModule,
     NgbCollapseModule,
     NgDynamicBreadcrumbModule,
@@ -234,71 +211,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
             url: 'admin/orders/:id'
           }
         ]
-      }, canActivate: [AuthGuardService,AdminAuthGuardService]},
-      {path: 'admin/products/new', component: ProductFormComponent,      
-      data: {
-        title: 'New Product',
-        breadcrumb: [
-          {
-            label: 'Home',
-            url: '/'
-          },
-          {
-            label: 'Manage Products',
-            url: 'admin/products'
-          },
-          {
-            label: 'Add New Product',
-            url: 'admin/products/new'
-          }
-        ]
-      }, canActivate: [AuthGuardService,AdminAuthGuardService]},
-      {path: 'admin/products/:id', component: ProductFormComponent,      
-      data: {
-        title: 'New Product',
-        breadcrumb: [
-          {
-            label: 'Home',
-            url: '/'
-          },
-          {
-            label: 'Manage Products',
-            url: 'admin/products'
-          },
-          {
-            label: 'Edit Product',
-            url: 'admin/products/:id'
-          }
-        ]
-      }, canActivate: [AuthGuardService,AdminAuthGuardService]},
-      {path: 'admin/products', component: AdminProductsComponent,      
-      data: {
-        title: 'Admin Products',
-        breadcrumb: [
-          {
-            label: 'Home',
-            url: '/'
-          },
-          {
-            label: 'Manage Products',
-            url: 'admin/products'
-          }
-        ]
-      }, canActivate: [AuthGuardService, AdminAuthGuardService]},
-      {path: 'admin/orders', component: AdminOrdersComponent,      
-      data: {
-        title: 'Admin View Order',
-        breadcrumb: [
-          {
-            label: 'Home',
-            url: '/'
-          },
-          {
-            label: 'Manage Orders',
-            url: 'admin/orders'
-          }
-        ]
-      }, canActivate: [AuthGuardService,AdminAuthGuardService]}       
+      }, canActivate: [AuthGuardService,AdminAuthGuardService]},        
     ]),
     BrowserAnimationsModule
   ],

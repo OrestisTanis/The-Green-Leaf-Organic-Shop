@@ -1,6 +1,6 @@
-import { Product } from '../../shared/models/product';
-import { ProductService } from '../../shared/services/product.service';
-import { CategoryService } from '../../shared/services/category.service';
+import { Product } from '../../../shared/models/product';
+import { ProductService } from '../../../shared/services/product.service';
+import { CategoryService } from '../../../shared/services/category.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
