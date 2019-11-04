@@ -1,4 +1,4 @@
-import { ShoppingCartService } from './shopping-cart-service';
+import { ShoppingCartService } from '../../services/shopping-cart-service';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Injectable } from '@angular/core';
 

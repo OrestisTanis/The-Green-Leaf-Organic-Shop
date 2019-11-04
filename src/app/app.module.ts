@@ -1,11 +1,13 @@
+import { SharedModule } from './shared/shared.module';
+import { OrderService } from './shared/services/order.service';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { NumbersOnlyDirective } from './directives/numbers-only-directive';
-import { ProductService } from './services/product.service';
-import { CategoryService } from './services/category.service';
+import { ProductService } from './shared/services/product.service';
+import { CategoryService } from './shared/services/category.service';
 import { AdminAuthGuardService } from './services/admin-auth-guard.service';
-import { UserService } from './services/user.service';
-import { AuthGuardService } from './services/auth-guard.service';
-import { AuthService } from './services/auth.service';
+import { UserService } from './shared/services/user.service';
+import { AuthGuardService } from './shared/services/auth-guard.service';
+import { AuthService } from './shared/services/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -29,7 +31,7 @@ import { environment } from 'src/environments/environment';
 import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
 import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './products/products.component';
-import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+
 import { CheckOutComponent } from './check-out/check-out.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
 import { LoginComponent } from './login/login.component';
@@ -41,13 +43,13 @@ import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductsFilterComponent } from './products/products-filter/products-filter.component';
-import { ProductCardComponent } from './products/product-card/product-card.component';
+
 import { ShoppingCartService } from './services/shopping-cart-service';
-import { ProductQuantityComponent } from './products/product-quantity/product-quantity.component';
+
 import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
 import { ShippingFormComponent } from './shipping-form/shipping-form.component';
 import { AdminViewOrderComponent } from './admin-view-order/admin-view-order.component';
-
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 
 
@@ -65,9 +67,7 @@ import { AdminViewOrderComponent } from './admin-view-order/admin-view-order.com
     AdminProductsComponent,
     AdminOrdersComponent,
     ProductFormComponent,
-    ProductsFilterComponent,
-    ProductCardComponent,
-    ProductQuantityComponent,
+    ProductsFilterComponent,    
     NumbersOnlyDirective,
     ShoppingCartSummaryComponent,
     ShippingFormComponent,
@@ -75,7 +75,8 @@ import { AdminViewOrderComponent } from './admin-view-order/admin-view-order.com
     BreadcrumbComponent
   ],
   imports: [
-    BrowserModule,  
+    BrowserModule, 
+    SharedModule, 
     AngularFireModule.initializeApp(environment.firebase, 'oshop'),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
@@ -302,11 +303,7 @@ import { AdminViewOrderComponent } from './admin-view-order/admin-view-order.com
     BrowserAnimationsModule
   ],
   providers: [
-    AuthService,
-    AuthGuardService,
-    UserService,
-    CategoryService,
-    ProductService,
+    AdminAuthGuardService,    
     ShoppingCartService
   ],
   bootstrap: [AppComponent]  

@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { Shipping } from '../models/shipping';
+import { Shipping } from '../shared/models/shipping';
 import { Subscription } from 'rxjs';
-import { Order } from '../models/order';
+import { Order } from '../shared/models/order';
 import { NgForm } from '@angular/forms';
-import { OrderService } from '../services/order.service';
-import { AuthService } from '../services/auth.service';
+import { OrderService } from '../shared/services/order.service';
+import { AuthService } from '../shared/services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({

@@ -1,10 +1,10 @@
 
-import { AuthService } from './../services/auth.service';
+import { AuthService } from '../shared/services/auth.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AppUser } from '../models/app-user';
+import { AppUser } from '../shared/models/app-user';
 import { ShoppingCartService } from '../services/shopping-cart-service';
 import { Subscription, Observable } from 'rxjs';
-import { ShoppingCart } from '../models/shopping-cart';
+import { ShoppingCart } from '../shared/models/shopping-cart';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 

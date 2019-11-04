@@ -1,10 +1,10 @@
 import { AngularFireList } from 'angularfire2/database';
-import { ShoppingCart } from './../models/shopping-cart';
-import { ShoppingItem } from './../models/shopping-item';
+import { ShoppingCart } from '../shared/models/shopping-cart';
+import { ShoppingItem } from '../shared/models/shopping-item';
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
 import { Injectable, OnDestroy } from '@angular/core';
 import { map, switchMap } from 'rxjs/operators';
-import { Product } from '../models/product';
+import { Product } from '../shared/models/product';
 import { Subscription, from, Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 

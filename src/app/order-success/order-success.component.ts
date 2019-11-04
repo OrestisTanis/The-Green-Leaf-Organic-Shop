@@ -1,11 +1,11 @@
-import { AuthService } from './../services/auth.service';
+import { AuthService } from '../shared/services/auth.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { OrderService } from '../services/order.service';
+import { OrderService } from '../shared/services/order.service';
 import { switchMap, map } from 'rxjs/operators';
-import { UserService } from '../services/user.service';
+import { UserService } from '../shared/services/user.service';
 import { Observable, Subscription } from 'rxjs';
-import { AppUser } from '../models/app-user';
+import { AppUser } from '../shared/models/app-user';
 
 @Component({
   selector: 'app-order-success',
