@@ -1,19 +1,16 @@
-import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ShoppingCartSummaryComponent } from './components/shopping-cart-summary/shopping-cart-summary.component';
-import { ShippingFormComponent } from './components/shipping-form/shipping-form.component';
-import { MyOrdersComponent } from './components/my-orders/my-orders.component';
-import { ProductsComponent } from './components/products/products.component';
-import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { RouterModule } from '@angular/router';
+
+import { AuthGuardService } from '../shared/services/auth-guard.service';
+import { SharedModule } from './../shared/shared.module';
 import { CheckOutComponent } from './components/check-out/check-out.component';
+import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { OrderSuccessComponent } from './components/order-success/order-success.component';
 import { ProductsFilterComponent } from './components/products-filter/products-filter.component';
-import { RouterModule } from '@angular/router';
-import { AuthGuardService } from '../shared/services/auth-guard.service';
-import { FormsModule } from '@angular/forms';
-import { CustomFormsModule } from 'ng2-validation';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ProductsComponent } from './components/products/products.component';
+import { ShippingFormComponent } from './components/shipping-form/shipping-form.component';
+import { ShoppingCartSummaryComponent } from './components/shopping-cart-summary/shopping-cart-summary.component';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 
 @NgModule({
   declarations: [
@@ -32,12 +29,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   exports: [
     ProductsComponent,     
   ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    FormsModule,
-    CustomFormsModule,
-    FontAwesomeModule,
+  imports: [   
+    SharedModule, 
     RouterModule.forChild([      
         {path: 'products', component: ProductsComponent,
         data: {
