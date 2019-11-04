@@ -1,10 +1,10 @@
-import { AuthService } from '../shared/services/auth.service';
-import { UserService } from '../shared/services/user.service';
-import { OrderService } from '../shared/services/order.service';
+import { AuthService } from '../../../shared/services/auth.service';
+import { UserService } from '../../../shared/services/user.service';
+import { OrderService } from '../../../shared/services/order.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { map, switchMap } from 'rxjs/operators';
 import { Subscription, Observable } from 'rxjs';
-import { AppUser } from '../shared/models/app-user';
+import { AppUser } from '../../../shared/models/app-user';
 
 @Component({
   selector: 'my-orders',

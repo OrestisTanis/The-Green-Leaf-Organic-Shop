@@ -15,11 +15,12 @@ import { MatSortModule } from '@angular/material/sort';
 
 
 
+
 @NgModule({    
   declarations: [
     AdminOrdersComponent,
     ProductFormComponent,
-    AdminProductsComponent,
+    AdminProductsComponent,    
   ],
   providers: [
     AuthGuardService, 
@@ -98,7 +99,7 @@ import { MatSortModule } from '@angular/material/sort';
             url: 'admin/orders'
           }
         ]
-      }, canActivate: [AuthGuardService,AdminAuthGuardService]}       
+      }, canActivate: [AuthGuardService,AdminAuthGuardService]},         
     ])
   ]
 })

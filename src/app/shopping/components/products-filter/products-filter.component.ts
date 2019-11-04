@@ -1,4 +1,4 @@
-import { CategoryService } from '../../shared/services/category.service';
+import { CategoryService } from '../../../shared/services/category.service';
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';

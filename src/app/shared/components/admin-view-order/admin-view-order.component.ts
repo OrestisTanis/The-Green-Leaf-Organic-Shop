@@ -1,8 +1,8 @@
-import { AuthService } from '../shared/services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Subscription, Observable } from 'rxjs';
-import { OrderService } from '../shared/services/order.service';
-import { UserService } from '../shared/services/user.service';
+import { OrderService } from '../../services/order.service';
+import { UserService } from '../../services/user.service';
 import { map, switchMap } from 'rxjs/operators';
 import { ActivatedRoute } from "@angular/router";
 import { faPrint } from '@fortawesome/free-solid-svg-icons';
