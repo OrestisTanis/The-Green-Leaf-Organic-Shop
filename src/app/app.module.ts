@@ -20,6 +20,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort'; 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {NgDynamicBreadcrumbModule} from "ng-dynamic-breadcrumb";
+import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CustomFormsModule } from 'ng2-validation';
@@ -86,6 +87,7 @@ import { AdminViewOrderComponent } from './admin-view-order/admin-view-order.com
     MatPaginatorModule,
     MatSortModule,
     FontAwesomeModule,
+    NgbCollapseModule,
     NgDynamicBreadcrumbModule,
     RouterModule.forRoot([
       { 

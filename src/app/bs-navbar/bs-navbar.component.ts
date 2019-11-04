@@ -5,7 +5,7 @@ import { AppUser } from '../models/app-user';
 import { ShoppingCartService } from '../services/shopping-cart-service';
 import { Subscription, Observable } from 'rxjs';
 import { ShoppingCart } from '../models/shopping-cart';
-
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -18,6 +18,8 @@ export class BsNavbarComponent implements OnInit, OnDestroy {
   cartItemCount: number;
   subscription: Subscription;
   cart$: Observable<ShoppingCart>;
+  isCollapsed: boolean = true; // for toggling the navbar-toggle
+  faShoppingCart = faShoppingCart; //font-awesome icon
 
   constructor(private auth: AuthService, 
     private shoppingCartService: ShoppingCartService,
@@ -44,6 +46,7 @@ export class BsNavbarComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
+  
   
 
 
