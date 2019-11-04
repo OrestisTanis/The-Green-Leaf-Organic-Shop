@@ -1,8 +1,10 @@
-import { AdminViewOrderComponent } from './components/admin-view-order/admin-view-order.component';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-
+import { AdminAuthGuardService } from '../admin/services/admin-auth-guard.service';
+import { AdminViewOrderComponent } from './components/admin-view-order/admin-view-order.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ProductQuantityComponent } from './components/product-quantity/product-quantity.component';
 import { AuthGuardService } from './services/auth-guard.service';
@@ -11,9 +13,7 @@ import { CategoryService } from './services/category.service';
 import { OrderService } from './services/order.service';
 import { ProductService } from './services/product.service';
 import { UserService } from './services/user.service';
-import { RouterModule } from '@angular/router';
-import { AdminAuthGuardService } from '../admin/services/admin-auth-guard.service';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 
 @NgModule({
@@ -47,20 +47,21 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ProductCardComponent,
     AdminViewOrderComponent
   ],
+  providers: [
+    UserService,
+    AuthService,
+    AuthGuardService,
+    AdminAuthGuardService,
+    ProductService,    
+    CategoryService,
+    OrderService
+  ],
   exports: [
     ProductQuantityComponent,
     ProductCardComponent,
     AdminViewOrderComponent    
   ],
-  providers: [
-    AdminAuthGuardService,
-    AuthService,
-    AuthGuardService,
-    UserService,
-    CategoryService,
-    ProductService,
-    OrderService
-  ]
+  
   
 })
 export class SharedModule { }
