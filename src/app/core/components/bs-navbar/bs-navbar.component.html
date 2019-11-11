@@ -1,10 +1,10 @@
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="padding-left:40px; background-color: rgb(255, 255, 255)!important">
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="background-color: rgb(255, 255, 255)!important">
   <div class="container">
     <a class="navbar-brand" routerLink="/" >
-      <fa-icon [icon]="faLeaf" id="logo" style="font-size:120%;"></fa-icon>
+      <fa-icon transform="right-15" [icon]="faLeaf" id="logo" style="font-size:120%;"></fa-icon>
     </a>
-    <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarsExampleDefault" aria-label="Toggle navigation">
+    <button style="margin-right:30px!important;" class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarsExampleDefault" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -18,7 +18,7 @@
               </form>
         </li> 
       </ul>
-      <ul class="navbar-nav" [class.collapsed]="!isCollapsed">
+      <ul class="navbar-nav pl-3" [class.collapsed]="!isCollapsed">
         <li class="nav-item">
           <a class="nav-link" routerLink="/">Products<span class="sr-only">(current)</span></a>
         </li>

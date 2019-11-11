@@ -29,12 +29,14 @@ $oshop-theme: mat-light-theme($oshop-primary, $oshop-accent, $oshop-warn);
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
-body {
-    margin:0px;
+
+html, body { height: 100%; overflow-x: hidden;}
+
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif;
     padding-top:80px;
-}
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+ }
 
 $primary-color: #c1d62e;
 
@@ -57,4 +59,29 @@ $primary-color: #c1d62e;
 
 .page-footer {
     background-color: $primary-color;
+}
+
+#orderDropdown {
+    color: rgb(145, 145, 145);
+    border-color: rgb(145, 145, 145);
+    
+}
+#orderDropdown:not(:disabled):not(.disabled).active:focus, #orderDropdown:not(:disabled):not(.disabled):active:focus, .show>.btn-outline-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem $primary-color;
+}
+
+.show>#orderDropdown.dropdown-toggle {
+    border-color: $primary-color;
+    background-color: $primary-color;
+    color:white;
+}
+
+#orderDropdown:hover {
+    background-color: $primary-color;
+    color: white;
+    border-color: $primary-color;
+}
+
+#orderDropdown.focus, #orderDropdown:focus {
+    box-shadow: 0 0 0 0.2rem rgba($primary-color,.5);
 }

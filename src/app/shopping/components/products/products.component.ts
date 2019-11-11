@@ -6,7 +6,7 @@ import { Subscription, Observable } from 'rxjs';
 import { Product } from '../../../shared/models/product';
 import { map, switchMap, take } from 'rxjs/operators';
 import { ShoppingCartService } from '../../../services/shopping-cart-service';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -20,8 +20,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
   selectedCategories: string[];
   filteredProducts$ : Product[] = [];
   cart$: Observable<ShoppingCart>;  
-  faSearch = faSearch; //font-awesome icon
 
+  //font-awesome icons
+  faSearch = faSearch; 
+  faSortUp = faSortUp; 
+  faSortDown = faSortDown; 
+  
   constructor(private productService: ProductService,
     private route: ActivatedRoute,
     private shoppingCartService: ShoppingCartService) { }

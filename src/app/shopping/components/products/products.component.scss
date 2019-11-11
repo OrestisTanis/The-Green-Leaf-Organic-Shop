@@ -5,3 +5,13 @@
 .page-link{
     color:black;
 }
+.modal-full {
+    min-width: 100%;
+    margin: 0;
+}
+
+.modal-full .modal-content {
+    min-height: 100vh;
+}
+
+
