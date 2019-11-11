@@ -22,6 +22,7 @@ import { MatTableModule, MatPaginatorModule, MatSliderModule, MatSortModule } fr
 import { NgDynamicBreadcrumbModule } from 'ng-dynamic-breadcrumb';
 
 
+
 @NgModule({
 
   imports: [
@@ -62,7 +63,9 @@ import { NgDynamicBreadcrumbModule } from 'ng-dynamic-breadcrumb';
   declarations: [
     ProductQuantityComponent,
     ProductCardComponent,
-    AdminViewOrderComponent
+    AdminViewOrderComponent,
+    
+    
   ],
   providers: [
     UserService,
@@ -76,7 +79,7 @@ import { NgDynamicBreadcrumbModule } from 'ng-dynamic-breadcrumb';
   exports: [
     ProductQuantityComponent,
     ProductCardComponent,
-    AdminViewOrderComponent,
+    AdminViewOrderComponent,     
     CommonModule,
     FontAwesomeModule,
     AngularFireDatabaseModule,

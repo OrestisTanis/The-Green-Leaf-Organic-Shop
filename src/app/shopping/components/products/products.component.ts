@@ -1,12 +1,13 @@
-
 import { ShoppingCart } from '../../../shared/models/shopping-cart';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../../shared/services/product.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy} from '@angular/core';
 import { Subscription, Observable } from 'rxjs';
 import { Product } from '../../../shared/models/product';
 import { map, switchMap, take } from 'rxjs/operators';
 import { ShoppingCartService } from '../../../services/shopping-cart-service';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-products',
@@ -16,10 +17,10 @@ import { ShoppingCartService } from '../../../services/shopping-cart-service';
 export class ProductsComponent implements OnInit, OnDestroy {
   products: Product[] = []; 
   subscription: Subscription;  
-  selectedCategory: string;
+  selectedCategories: string[];
   filteredProducts$ : Product[] = [];
   cart$: Observable<ShoppingCart>;  
- 
+  faSearch = faSearch; //font-awesome icon
 
   constructor(private productService: ProductService,
     private route: ActivatedRoute,
@@ -29,17 +30,28 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.cart$ = await this.shoppingCartService.getCart();
     this.populateProducts();    
   }
-  
+
   ngOnDestroy() {
     this.subscription.unsubscribe();  
   }
 
-  filterByCategory(category: string){
-    this.filteredProducts$ = category ? this.products.filter(p => p.category === category) : this.products;     
+  filterByCategory(categories: string[]){
+
+    if (categories && categories.length!==0){
+      var temp = [];
+      for (let category of categories){
+          temp = temp.concat(this.products.filter(p => p.category === category));
+      }
+      this.filteredProducts$ = temp;
+    }
+    else {
+      this.filteredProducts$ = this.products;
+    }
   }
 
   populateProducts(){
-    this.subscription=this.productService.getAllProducts()
+
+    this.subscription = this.productService.getAllProducts()
     .snapshotChanges()
     .pipe(
       map(actions =>
@@ -52,8 +64,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
       return this.route.queryParamMap;
      }))     
     .subscribe(params => {
-      this.selectedCategory = params.get('category');
-      this.filterByCategory(this.selectedCategory);
+      let h = params.get('category');
+      this.filteredProducts$ = this.products;
     });
   }
 

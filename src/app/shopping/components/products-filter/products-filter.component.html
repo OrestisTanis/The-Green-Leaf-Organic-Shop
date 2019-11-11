@@ -1,4 +1,4 @@
-<div class="sticky-top">
+<!-- <div class="sticky-top">
     <ul class="list-group">
         <li class="list-group-item" [class.active]="!selectedCategory">
             <a routerLink="/">All Categories</a>
@@ -7,7 +7,33 @@
             <a routerLink="/" [queryParams]="{category: category.name}">{{category.name}}</a>     
         </li>            
     </ul>
+</div> -->
+ 
+
+
+<div class="sticky-top">
+     <!-- BEGIN FILTERS -->
+    <h2 class="grid-title"><i class="fa fa-filter"></i> Filters</h2>
+    <hr style="height:2px">
+    
+    <!-- BEGIN FILTER BY CATEGORY -->
+    <h4>By category:</h4>
+    <form>
+        <div *ngFor="let category of categories$; let i=index;" class="form-group form-check">
+            <input (change)="setFilter($event)" name="{{category.name}}" type="checkbox" class="form-check-input" id="exampleCheck{{i}}">
+            <label class="form-check-label" for="exampleCheck{{i}}">&nbsp;{{category.name}}</label>
+        </div>
+    </form>
+    <!-- END FILTER BY CATEGORY -->
+    <hr style="height:2px">
+
+    <!-- BEGIN FILTER BY PRICE -->
+    <h4>By price:</h4>
+    Between <div id="price1">$300</div> to <div id="price2">$800</div>
+    <div class="slider-primary">
+        <div class="slider slider-horizontal" style="width: 152px;"><div class="slider-track"><div class="slider-selection" style="left: 30%; width: 50%;"></div><div class="slider-handle round" style="left: 30%;"></div><div class="slider-handle round" style="left: 80%;"></div></div><div class="tooltip top hide" style="top: -30px; left: 50.1px;"><div class="tooltip-arrow"></div><div class="tooltip-inner">300 : 800</div></div><input type="text" class="slider" value="" data-slider-min="0" data-slider-max="1000" data-slider-step="1" data-slider-value="[300,800]" data-slider-tooltip="hide"></div>
+    </div>
+    <!-- END FILTER BY PRICE -->
+   
+    <!-- END FILTERS -->
 </div>
-
-
-

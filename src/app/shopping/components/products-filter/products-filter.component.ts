@@ -1,5 +1,5 @@
 import { CategoryService } from '../../../shared/services/category.service';
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -11,8 +11,9 @@ import { map } from 'rxjs/operators';
 export class ProductsFilterComponent implements OnInit, OnDestroy {
   categories$: any;
   categorySubscription: Subscription;
-  @Input('selectedCategory') selectedCategory : string;
-  
+  selectedCategories: string[] = [];
+  // @Input('selectedCategory') selectedCategory : string;
+  @Output() valueChange = new EventEmitter<string[]>();
 
   constructor(private categoryService: CategoryService) {
 
@@ -32,6 +33,19 @@ export class ProductsFilterComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {    
     this.categorySubscription.unsubscribe;
+  }
+
+  setFilter(event){
+    
+    if (this.selectedCategories.includes(event.target.name))
+    {
+      let index = this.selectedCategories.indexOf(event.target.name);
+      this.selectedCategories.splice(index,1);
+    }
+    else {
+      this.selectedCategories.push(event.target.name)
+    }
+    this.valueChange.emit(this.selectedCategories);
   }
 
 }

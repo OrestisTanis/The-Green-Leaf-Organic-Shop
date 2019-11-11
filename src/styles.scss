@@ -35,3 +35,26 @@ body {
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+$primary-color: #c1d62e;
+
+.primary-color{
+    color: #c1d62e;
+}
+
+#logo {
+    color: $primary-color;
+}
+
+#search-button {
+    background-color: $primary-color;
+    border-color: rgb(207, 207, 207);
+}
+
+.breadcrumb {
+    background-color: $primary-color;
+}
+
+.page-footer {
+    background-color: $primary-color;
+}

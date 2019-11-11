@@ -16,10 +16,11 @@ import { ProductsComponent } from './shopping/components/products/products.compo
 import { ShoppingModule } from './shopping/shopping.module';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
-    NumbersOnlyDirective
+    NumbersOnlyDirective,
   ],
   imports: [
     BrowserModule, 

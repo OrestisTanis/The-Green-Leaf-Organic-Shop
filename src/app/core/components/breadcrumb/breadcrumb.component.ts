@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd, PRIMARY_OUTLET, RoutesRecognized } from '@angular/router';
 import { filter } from 'rxjs/operators';
-import { map, mergeMap } from 'rxjs/internal/operators';
+import { map } from 'rxjs/internal/operators';
 
 @Component({
   selector: 'breadcrumb',

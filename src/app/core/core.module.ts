@@ -1,3 +1,4 @@
+import { FooterComponent } from './components/footer/footer.component';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
@@ -6,6 +7,7 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
 import { BsNavbarComponent } from './components/bs-navbar/bs-navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+
 
 @NgModule({
   imports: [
@@ -16,10 +18,12 @@ import { LoginComponent } from './components/login/login.component';
     BsNavbarComponent,
     HomeComponent,    
     LoginComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    FooterComponent
   ],
   exports:[
-    BsNavbarComponent
+    BsNavbarComponent,
+    FooterComponent
   ]
 })
 export class CoreModule { }
