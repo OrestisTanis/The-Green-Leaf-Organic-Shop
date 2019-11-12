@@ -1,73 +1,52 @@
-<!-- <div class="row">
-    <div class="col-3">
-       <products-filter [selectedCategory]="selectedCategory"></products-filter>
+<div class="row">
+    <!-- FILTERS MD -->
+    <div class="col-sm-12 col-md-3 align-items-start">
+        <products-filter (valueChange)='filterByCategory($event)'></products-filter>
     </div>
-    
-</div> -->
-    <div class="row">
-        <div class="col-md-3 align-items-start">
-            <products-filter (valueChange)='filterByCategory($event)'></products-filter>
-        </div>
 
-        <!-- BEGIN RESULT -->
-        <div class="col-12 col-md-9">
-
-            <!-- BEGIN ORDER RESULT -->
-            <div class="col-md-12 d-flex justify-content-end">
-                    <div ngbDropdown class="d-inline-block">
-                        <button class="btn btn-outline-primary" id="orderDropdown"  ngbDropdownToggle>Order by</button>
-                        <div ngbDropdownMenu aria-labelledby="orderDropdown">
-                          <button ngbDropdownItem class="pointer">Price - Ascending &nbsp;<fa-icon [icon]="faSortUp" transform="down-5"></fa-icon></button>
-                          <button ngbDropdownItem class="pointer">Price - Desending &nbsp;<fa-icon [icon]="faSortDown" transform="up-1"></fa-icon></button>
-                          <button ngbDropdownItem class="pointer">Category</button>
-                        </div>
+    <!-- BEGIN RESULT -->
+    <div class="col-12 col-md-9">
+        
+        <!-- BEGIN SEARCH INPUT -->
+        <div class="row">
+            <div class="col-12 pt-3">
+                    <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Type here to search for products...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" id="search-button" type="button"><fa-icon [icon]="faSearch"></fa-icon></button>
+                            </span>
                     </div>
-                </div>
-                <!-- END ORDER RESULT -->
-            
-            <!-- BEGIN SEARCH INPUT -->
-            <div class="row">
-                <div class="col-12 pt-3">
-                        <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Type here to search for products...">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-primary" id="search-button" type="button"><fa-icon [icon]="faSearch"></fa-icon></button>
-                                </span>
-                        </div>
-                        <!-- TODO....AFTER SEARCH -->
-                        <!-- <p class="ml-1 mt-2">Showing all results matching "web development"</p> -->
-                </div>
-            </div>
-            <!-- END SEARCH INPUT -->
-            
-            <div class="col-12 offset-md-0 col-md-12 mt-3">
-                <div *ngIf="cart$ | async as cart" class="row">
-                        <ng-container *ngFor="let product of filteredProducts$; let i = index">
-                        <div class="col cardholder d-flex justify-content-center">                    
-                            <product-card [product]="product" [shopping-cart]="cart"></product-card>
-                        </div>        
-                        <div *ngIf="(i+1) % 2 === 0" class="w-100"></div>
-                    </ng-container>
-                </div>
-            </div>                 
-            
-            <div class="col d-flex justify-content-center">
-                <ul class="pagination">
-                    <li class="page-item" class="disabled"><a class="page-link" href="#">«</a></li>
-                    <li class="page-item" class="active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                    <li class="page-item"><a class="page-link" href="#">»</a></li>
-                </ul>
-                <!-- END PAGINATION -->
+                    <!-- TODO....AFTER SEARCH -->
+                    <!-- <p class="ml-1 mt-2">Showing all results matching "web development"</p> -->
             </div>
         </div>
-        <!-- END RESULT -->
+        <!-- END SEARCH INPUT -->
+        
+        <div class="col-12 offset-md-0 col-md-12 mt-3">
+            <div *ngIf="cart$ | async as cart" class="row">
+                    <ng-container *ngFor="let product of shownProducts$; let i = index">
+                    <div class="col cardholder d-flex justify-content-center">                    
+                        <product-card [product]="product" [shopping-cart]="cart"></product-card>
+                    </div>        
+                    <div *ngIf="(i+1) % 2 === 0" class="w-100"></div>
+                </ng-container>
+            </div>
+        </div>                 
+        
+        <!-- BEGIN PAGINATION -->
+        <div class="col d-flex justify-content-center">
+            <ul class="pagination">
+                <li (click)="goToFirstPage()" class="page-item" class="disabled"><a class="page-link">«</a></li>
+                <li (click)="goToPage(i+1)" *ngFor="let n of pageArray(numberOfPages); let i = index" class="page-item" class="active"><a class="page-link" href="#">{{i+1}}</a></li>
+                <li (click)="goToLastPage()" class="page-item"><a class="page-link">»</a></li>
+            </ul>
+        </div>
+        <!-- END PAGINATION -->
+    </div>
+    <!-- END RESULT -->
     
            
         <!-- END SEARCH RESULT -->
-    </div>
+</div>
 
     

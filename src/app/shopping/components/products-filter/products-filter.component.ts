@@ -2,6 +2,7 @@ import { CategoryService } from '../../../shared/services/category.service';
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { faFilter, faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'products-filter',
@@ -12,6 +13,13 @@ export class ProductsFilterComponent implements OnInit, OnDestroy {
   categories$: any;
   categorySubscription: Subscription;
   selectedCategories: string[] = [];
+  public isCollapsed = false;
+
+  // Font-Awesome Icons
+  faSortUp = faSortUp; 
+  faSortDown = faSortDown; 
+  faFilter = faFilter;
+
   // @Input('selectedCategory') selectedCategory : string;
   @Output() valueChange = new EventEmitter<string[]>();
 

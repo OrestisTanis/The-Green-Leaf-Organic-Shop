@@ -6,7 +6,7 @@ import { Subscription, Observable } from 'rxjs';
 import { Product } from '../../../shared/models/product';
 import { map, switchMap, take } from 'rxjs/operators';
 import { ShoppingCartService } from '../../../services/shopping-cart-service';
-import { faSearch, faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faTintSlash } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -19,12 +19,20 @@ export class ProductsComponent implements OnInit, OnDestroy {
   subscription: Subscription;  
   selectedCategories: string[];
   filteredProducts$ : Product[] = [];
+  shownProducts$ : Product[] = [];
   cart$: Observable<ShoppingCart>;  
 
-  //font-awesome icons
+  // Font-Awesome Icons
   faSearch = faSearch; 
-  faSortUp = faSortUp; 
-  faSortDown = faSortDown; 
+
+  // Pagination
+  activePage: number = 1;
+  itemsPerPage: number = 4;
+  numberOfPages: number;
+  pageArray(n: number): any[] {
+    return Array(n);
+  }
+
   
   constructor(private productService: ProductService,
     private route: ActivatedRoute,
@@ -40,7 +48,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   filterByCategory(categories: string[]){
-
     if (categories && categories.length!==0){
       var temp = [];
       for (let category of categories){
@@ -51,6 +58,16 @@ export class ProductsComponent implements OnInit, OnDestroy {
     else {
       this.filteredProducts$ = this.products;
     }
+
+    // Finding the Number of Pages
+    
+    this.numberOfPages = (this.filteredProducts$.length)%2 == 0 ?
+    Math.floor(this.filteredProducts$.length/this.itemsPerPage) + 1 :
+    Math.floor(this.filteredProducts$.length/this.itemsPerPage) + 1;
+    console.log("number of pages: "+this.numberOfPages);
+
+    this.populatePageProducts();
+
   }
 
   populateProducts(){
@@ -69,8 +86,53 @@ export class ProductsComponent implements OnInit, OnDestroy {
      }))     
     .subscribe(params => {
       let h = params.get('category');
-      this.filteredProducts$ = this.products;
+      this.filteredProducts$ = this.shownProducts$ = this.products;
+
+      this.activePage = 1;
+
+      this.populatePageProducts();
+
+      // Finding the Number of Pages
+      this.numberOfPages = (this.products.length)%2 == 0 ?
+        this.shownProducts$.length/this.itemsPerPage :
+        Math.floor(this.products.length/this.itemsPerPage) + 1;
+      // console.log("number of pages: "+this.numberOfPages);
+      
+      
     });
+  }
+
+  populatePageProducts(){
+    let sliceIndex = (this.activePage-1)*this.itemsPerPage;
+      this.shownProducts$ = this.filteredProducts$.slice(sliceIndex,sliceIndex + this.itemsPerPage);
+      console.log("sliceIndex: "+sliceIndex )
+  }
+
+  goToPage(pageNumber){    
+    if (pageNumber!==this.activePage){
+      
+      this.activePage = pageNumber;
+
+      this.populatePageProducts();
+    }
+  }
+
+  goToFirstPage(){
+    if (this.activePage !== 1){
+    this.activePage = 1;
+
+    this.populatePageProducts();
+    }
+  }
+
+  goToLastPage(){
+    if(this.activePage !== this.numberOfPages){
+      this.activePage = this.numberOfPages;
+
+      this.populatePageProducts();;
+
+    }
+    
   }
 
 }
