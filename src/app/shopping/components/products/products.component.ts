@@ -7,7 +7,7 @@ import { Subscription, Observable } from 'rxjs';
 import { Product } from '../../../shared/models/product';
 import { map, switchMap, take } from 'rxjs/operators';
 import { ShoppingCartService } from '../../../services/shopping-cart-service';
-import { faSearch, faTintSlash } from '@fortawesome/free-solid-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 
 
