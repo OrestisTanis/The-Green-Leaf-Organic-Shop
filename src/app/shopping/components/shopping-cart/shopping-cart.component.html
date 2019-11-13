@@ -42,7 +42,7 @@
                         </tr>     
                     </tbody>
                 </table> 
-                <button class="btn mt-4" [disabled]="(cart.TotalItemCount === 0)" [class.btn-primary]="(cart.TotalItemCount > 0)" routerLink="/check-out">
+                <button class="btn mt-4 check-out-button" [disabled]="(cart.TotalItemCount === 0)" [class.btn-primary]="(cart.TotalItemCount > 0)" routerLink="/check-out">
                     Check Out
                 </button>  
             </div>

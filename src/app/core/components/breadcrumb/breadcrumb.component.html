@@ -1,8 +1,8 @@
 <nav aria-label='breadcrumb' class="fixed-top" style="margin-top:105px;">
     <div class="container">
-        <ol *ngIf="breadcrumbs" class="breadcrumb arr-right pl-5 pb-4 pt-4">
-            <li class="breadcrumb-item text-white" *ngFor='let breadcrumb of breadcrumbs[0].label; let isLast = last'>
-                <a *ngIf="!isLast" [routerLink]="breadcrumb.url">{{ breadcrumb.label }}</a>        
+        <ol *ngIf="breadcrumbs" class="breadcrumb arr-right pl-3 pb-4 pt-4">
+            <li class="breadcrumb-item text-white" *ngFor='let breadcrumb of breadcrumbs[0].label; let isLast = last; let isFirst = first'>
+                <a *ngIf="!isLast" [routerLink]="breadcrumb.url"><span *ngIf="isFirst" class="d-inline-block d-sm-none">&nbsp;&nbsp;</span>{{ breadcrumb.label }}</a>        
                 <span [hidden]="!isLast">{{ breadcrumb.label }}</span>
             </li>
         </ol>

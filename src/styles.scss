@@ -39,6 +39,8 @@ body {
  }
 
 $primary-color: #c1d62e;
+$primary-color-accent: #a7ad83;
+$primary-color-dark: #99b100;
 
 .primary-color{
     color: #c1d62e;
@@ -46,6 +48,17 @@ $primary-color: #c1d62e;
 
 #logo {
     color: $primary-color;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color:$primary-color;
+    border-color: $primary-color;
+}
+.btn-primary:hover {
+    color: #fff;
+    background-color:$primary-color-dark;
+    border-color:$primary-color-dark;
 }
 
 #search-button {
@@ -64,8 +77,8 @@ $primary-color: #c1d62e;
 
 // FILTER BUTTON
 .filter-button {
-    color: rgb(145, 145, 145);
-    border-color: rgb(145, 145, 145);
+    color: rgb(128, 128, 128);
+    border-color:rgb(128, 128, 128);
 }
 .filter-button:not(:disabled):not(.disabled):active{
     color: #fff;
