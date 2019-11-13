@@ -3,6 +3,7 @@ import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angu
 import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { faFilter, faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
+import { OrderBy } from 'src/app/shared/models/orderBy';
 
 @Component({
   selector: 'products-filter',
@@ -14,6 +15,7 @@ export class ProductsFilterComponent implements OnInit, OnDestroy {
   categorySubscription: Subscription;
   selectedCategories: string[] = [];
   public isCollapsed = false;
+  orderBy = OrderBy.None;
 
   // Font-Awesome Icons
   faSortUp = faSortUp; 
@@ -21,7 +23,8 @@ export class ProductsFilterComponent implements OnInit, OnDestroy {
   faFilter = faFilter;
 
   // @Input('selectedCategory') selectedCategory : string;
-  @Output() valueChange = new EventEmitter<string[]>();
+  @Output() categoryValueChange = new EventEmitter<string[]>();
+  @Output() orderValueChange = new EventEmitter<OrderBy>();
 
   constructor(private categoryService: CategoryService) {
 
@@ -53,7 +56,31 @@ export class ProductsFilterComponent implements OnInit, OnDestroy {
     else {
       this.selectedCategories.push(event.target.name)
     }
-    this.valueChange.emit(this.selectedCategories);
+    this.categoryValueChange.emit(this.selectedCategories);
+  }
+
+  orderAscending(){
+    if(this.orderBy !== OrderBy.Ascending)
+    {
+      this.orderBy = OrderBy.Ascending;
+      this.orderValueChange.emit(this.orderBy);
+    }
+    else{
+      this.orderBy = OrderBy.None;
+      this.orderValueChange.emit(this.orderBy);
+    }
+  }
+
+  orderDescending(){
+    if(this.orderBy !== OrderBy.Descending)
+    {
+      this.orderBy = OrderBy.Descending;
+      this.orderValueChange.emit(this.orderBy);
+    }
+    else{
+      this.orderBy = OrderBy.None;
+      this.orderValueChange.emit(this.orderBy);
+    }
   }
 
 }

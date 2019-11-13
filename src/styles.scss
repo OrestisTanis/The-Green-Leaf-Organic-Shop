@@ -57,41 +57,52 @@ $primary-color: #c1d62e;
     background-color: $primary-color;
 }
 
+// FOOTER 
 .page-footer {
     background-color: $primary-color;
 }
 
+// FILTER BUTTON
 .filter-button {
     color: rgb(145, 145, 145);
     border-color: rgb(145, 145, 145);
-    
 }
-
 .filter-button:not(:disabled):not(.disabled):active{
     color: #fff;
     background-color: $primary-color;
     border-color:$primary-color;
 }
-
 .filter-button:not(:disabled):not(.disabled).active:focus, .filter-button:not(:disabled):not(.disabled):active:focus {
     box-shadow: 0 0 0 0.2rem $primary-color;
 }
-
-.filter-button:not(:disabled):not(.disabled):active:focus {
-    box-shadow: 0 0 0 0.2rem $primary-color;
-}
-
 .filter-button:focus {
     box-shadow: 0 0 0 0.0rem rgba($primary-color,.25);
 }
-
 .filter-button:hover {
     background-color: $primary-color;
     color: white;
     border-color: $primary-color;
 }
 
-.filter-button.focus, #orderDropdown:focus {
-    box-shadow: 0 0 0 0.2rem rgba($primary-color,.5);
+// PAGINATION
+.pagination{
+    color:black;
+}
+
+.pagination :hover{
+    cursor:pointer;
+}
+
+.pagination:focus {
+    z-index: 2;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba($primary-color, 0);
+}
+
+.page-item.active .pagination {
+    z-index: 1;
+    color: #fff;
+    background-color: $primary-color;
+    border-color: $primary-color;
 }
 

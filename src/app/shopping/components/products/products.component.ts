@@ -1,3 +1,4 @@
+import { OrderBy } from './../../../shared/models/orderBy';
 import { ShoppingCart } from '../../../shared/models/shopping-cart';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../../shared/services/product.service';
@@ -7,6 +8,7 @@ import { Product } from '../../../shared/models/product';
 import { map, switchMap, take } from 'rxjs/operators';
 import { ShoppingCartService } from '../../../services/shopping-cart-service';
 import { faSearch, faTintSlash } from '@fortawesome/free-solid-svg-icons';
+
 
 
 @Component({
@@ -21,6 +23,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
   filteredProducts$ : Product[] = [];
   shownProducts$ : Product[] = [];
   cart$: Observable<ShoppingCart>;  
+  query: string ="";
+  orderBy: OrderBy.None;
 
   // Font-Awesome Icons
   faSearch = faSearch; 
@@ -40,6 +44,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   
   async ngOnInit() {
     this.cart$ = await this.shoppingCartService.getCart();
+    this.orderBy = OrderBy.None;
     this.populateProducts();    
   }
 
@@ -47,31 +52,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();  
   }
 
-  filterByCategory(categories: string[]){
-    if (categories && categories.length!==0){
-      var temp = [];
-      for (let category of categories){
-          temp = temp.concat(this.products.filter(p => p.category === category));
-      }
-      this.filteredProducts$ = temp;
-    }
-    else {
-      this.filteredProducts$ = this.products;
-    }
-
-    // Finding the Number of Pages
-    
-    this.numberOfPages = (this.filteredProducts$.length)%2 == 0 ?
-    Math.floor(this.filteredProducts$.length/this.itemsPerPage) + 1 :
-    Math.floor(this.filteredProducts$.length/this.itemsPerPage) + 1;
-    console.log("number of pages: "+this.numberOfPages);
-
-    this.populatePageProducts();
-
-  }
-
   populateProducts(){
-
     this.subscription = this.productService.getAllProducts()
     .snapshotChanges()
     .pipe(
@@ -90,49 +71,136 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
       this.activePage = 1;
 
-      this.populatePageProducts();
+      this.populatePageProducts(this.filteredProducts$);
 
       // Finding the Number of Pages
-      this.numberOfPages = (this.products.length)%2 == 0 ?
-        this.shownProducts$.length/this.itemsPerPage :
-        Math.floor(this.products.length/this.itemsPerPage) + 1;
-      // console.log("number of pages: "+this.numberOfPages);
-      
-      
+      this.setPageNumber(this.filteredProducts$);
     });
   }
 
-  populatePageProducts(){
-    let sliceIndex = (this.activePage-1)*this.itemsPerPage;
-      this.shownProducts$ = this.filteredProducts$.slice(sliceIndex,sliceIndex + this.itemsPerPage);
-      console.log("sliceIndex: "+sliceIndex )
+  // Called when user types a query
+  filterByKeyWord(query: string){    
+    this.shownProducts$ = (query) ?
+    this.filteredProducts$.filter(p =>(p.name).toLowerCase().includes(query.toLowerCase()) || (p.category).toLowerCase().includes(query.toLowerCase())) :
+    this.filteredProducts$;
+    
+    this.setPageNumber(this.shownProducts$);
+    
+    this.checkActivePage();  
+
+    let finalProds = this.applyPriceFilter(this.shownProducts$);
+
+    this.populatePageProducts(finalProds);
   }
 
+  // Called when the user filters results by category
+  filterByCategory(categories: string[]){
+    if (categories && categories.length!==0){
+      let temp = [];
+      for (let category of categories){
+          temp = temp.concat(this.products.filter(p => p.category === category));
+      }
+      this.filteredProducts$ = temp;
+    }
+    else {
+      this.filteredProducts$ = this.products;
+    }
+
+    let finalProds = this.applyPriceFilter(this.filteredProducts$);
+
+    if(this.query){      
+      this.filterByKeyWord(this.query);
+    }
+    else {
+      this.setPageNumber(finalProds);
+      
+      this.checkActivePage();  
+      
+      this.populatePageProducts(finalProds);
+    }
+
+  }
+
+  // Set the maximum number of pages
+  setPageNumber(products : Product[]){
+    this.numberOfPages = (products.length)%4 == 0 ?
+      products.length/this.itemsPerPage :
+      Math.floor(products.length/this.itemsPerPage) + 1;
+  }
+
+  // Ensure that the active page number is smaller than the maximum number of pages
+  checkActivePage(){
+    this.activePage = this.activePage > this.numberOfPages? 1 : this.activePage;
+  }
+
+  // Populate page with products
+  populatePageProducts(products : Product[]){
+    let sliceIndex = (this.activePage-1)*this.itemsPerPage;
+    this.shownProducts$ = products.slice(sliceIndex,sliceIndex + this.itemsPerPage);
+
+    
+      
+  }
+
+  // Jump to page
   goToPage(pageNumber){    
     if (pageNumber!==this.activePage){
-      
       this.activePage = pageNumber;
-
-      this.populatePageProducts();
+      this.populatePageProducts(this.filteredProducts$);
     }
   }
 
+  // Jump to 1st page
   goToFirstPage(){
     if (this.activePage !== 1){
-    this.activePage = 1;
-
-    this.populatePageProducts();
+      this.activePage = 1;
+      this.populatePageProducts(this.filteredProducts$);
     }
   }
 
+  // Jump to last page
   goToLastPage(){
     if(this.activePage !== this.numberOfPages){
       this.activePage = this.numberOfPages;
-
-      this.populatePageProducts();;
-
+      this.populatePageProducts(this.filteredProducts$);;
     }
-    
   }
 
+  // Called when the user clicks on a price filter
+  filterByPrice(event){    
+    
+    // Apply filter on different selection   
+    this.orderBy = event;
+    let finalProds = this.applyPriceFilter(this.filteredProducts$);
+    
+
+    this.populatePageProducts(finalProds);
+  }
+
+  applyPriceFilter(prods: Product[]): Product[]{
+    let result;
+
+    if(this.query){ // In case of search query
+      let temp = this.shownProducts$.slice();
+      if(OrderBy[this.orderBy] == "Ascending")
+        return result = temp.sort((a,b) => (a.price > b.price) ? 1 : -1);
+      else if(OrderBy[this.orderBy] == "Descending")
+        return result = temp.sort((a,b) => (a.price > b.price) ? -1 : 1);
+      else         
+      return prods;
+    }
+    else {  // In case of no search query
+      let temp = prods.slice();
+      if(OrderBy[this.orderBy] == "Ascending")
+        return result = temp.sort((a,b) => (a.price > b.price) ? 1 : -1);
+      else if(OrderBy[this.orderBy] == "Descending")
+        return result = temp.sort((a,b) => (a.price > b.price) ? -1 : 1);
+      else         
+        return prods;
+    }
+    
+    
+
+    
+  }
 }

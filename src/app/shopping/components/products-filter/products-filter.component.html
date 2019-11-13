@@ -12,22 +12,23 @@
 
 <div class="sticky-top">
     <div class="container-fluid px-0 mt-4 mt-md-0">
+        <!-- BEGIN SCREENSIZE < MD -->
         <div class="row d-md-none no-gutters">
             <div class="col-12">
-                <p>
+                <p> <!-- FILTER COLLAPSE BUTTON -->
                     <button type="button" class="btn btn-outline-primary filter-button" (click)="isCollapsed = !isCollapsed"
                             [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
                             <fa-icon [icon]="faFilter" transform="shrink-2"></fa-icon>&nbsp;Filters
                     </button>
                 </p>
             </div>
-            
-            <!-- BEGIN FILTER BY CATEGORY -->
+           
             <div class="col-12">
                 <div id="collapseExample" [ngbCollapse]="!isCollapsed">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
+                                <!-- BEGIN FILTER BY CATEGORY -->
                                 <div class="col-6">
                                     <h6>By Category:</h6>
                                     <form>
@@ -37,24 +38,24 @@
                                         </div>
                                     </form>
                                 </div>
+                                <!-- END FILTER BY CATEGORY -->
+
+                                <!-- BEGIN FILTER BY PRICE -->
                                 <div class="col-5">
                                     <h6 class="pl-4">By Price</h6>
-                                    <button ngbDropdownItem class="pointer">Ascending &nbsp;<fa-icon [icon]="faSortUp" transform="down-5"></fa-icon></button>
-                                    <button ngbDropdownItem class="pointer">Desending &nbsp;<fa-icon [icon]="faSortDown" transform="up-3"></fa-icon></button>
-                                    
+                                    <button ngbDropdownItem class="btn filter-button" (click)="orderAscending()" [class.active]="orderBy == 0">Ascending &nbsp;<fa-icon [icon]="faSortUp" transform="down-5"></fa-icon></button>
+                                    <button ngbDropdownItem class="btn filter-button" (click)="orderDescending()" [class.active]="orderBy == 1">Desending &nbsp;<fa-icon [icon]="faSortDown" transform="up-3"></fa-icon></button>
                                 </div>
+                                <!-- END FILTER BY PRICE -->
                             </div>
-                            
-                            
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- END FILTER BY CATEGORY -->
-
-            
         </div>
+        <!-- END SCREENSIZE < MD -->
         
+        <!-- SCREENSIZE > MD -->
         <div class="d-none d-md-block">
             <!-- BEGIN FILTERS -->
             <h2 class="grid-title"><i class="fa fa-filter"></i> Filters</h2>
@@ -70,6 +71,14 @@
             </form>
             <!-- END FILTER BY CATEGORY -->
             <hr style="height:2px">
+            
+            <!-- BEGIN FILTER BY PRICE -->
+            <h4>By Price:</h4>
+            <form>
+                <button ngbDropdownItem class="btn filter-button" (click)="orderAscending()" [class.active]="orderBy == 0">Ascending &nbsp;<fa-icon [icon]="faSortUp" transform="down-5"></fa-icon></button>
+                <button ngbDropdownItem class="btn filter-button" (click)="orderDescending()" [class.active]="orderBy == 1">Desending &nbsp;<fa-icon [icon]="faSortDown" transform="up-3"></fa-icon></button>
+            </form>
+            <!-- END FILTER BY PRICE -->
         </div>  
     </div>
 </div>
