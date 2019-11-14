@@ -13,9 +13,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class ProductFormComponent implements OnDestroy{
   categories$:Observable<any>;
   onSubmitError:boolean=false;
-  product={};
-  creatingNewProduct=true;  // Flag to dintinguish between Creation/Update of a product
-  id; // If any, we get it from the params
+  product={};                   // Initialize empty object
+  creatingNewProduct=true;      // Flag to dintinguish between CreationOfNew/UpdateExisting states
+  id: string;                   // If any, we get it from the params
 
   private subscription: Subscription;
 
@@ -38,7 +38,7 @@ export class ProductFormComponent implements OnDestroy{
     else { this.creatingNewProduct=true;}
   }
   
-  onSubmit(f: NgForm) {
+  onSubmit(f: NgForm) {   // Called when buttons within the form of 'type=submit' are clicked
     if (f.valid)
     {
       this.onSubmitError=false;
@@ -51,12 +51,12 @@ export class ProductFormComponent implements OnDestroy{
     }
   }
 
-  updateProduct(){    // Called when the user clicks on 'Update Product' button
+  updateProduct(){    // Called on 'Update' button click
     this.productService.updateProduct(this.product,this.id);
     this.router.navigate(['/admin/products']);
   }
 
-  deleteProduct(){    // Called when the user clicks on 'Delete Product' button
+  deleteProduct(){    // Called on 'Delete' button click
     if (!confirm("Are you sure you want to delete this product?")) return;
     
     this.productService.deleteProduct(this.id);

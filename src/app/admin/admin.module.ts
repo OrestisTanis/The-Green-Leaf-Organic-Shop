@@ -9,8 +9,6 @@ import { ProductFormComponent } from './components/product-form/product-form.com
 import { AdminAuthGuardService } from './services/admin-auth-guard.service';
 
 
-
-
 @NgModule({    
   declarations: [
     AdminOrdersComponent,
@@ -23,10 +21,13 @@ import { AdminAuthGuardService } from './services/admin-auth-guard.service';
   ],
   imports: [
     SharedModule,
+    // BEGIN ADMIN MODULE ROUTES
     RouterModule.forChild([ 
-      {path: 'admin/products/new', component: ProductFormComponent,      
-      data: {
+      // BEGIN ROUTE
+      {path: 'admin/products/new', component: ProductFormComponent,        
+       data: {                          
         title: 'New Product',
+        // BEGIN BREADCRUMB DATA
         breadcrumb: [
           {
             label: 'Home',
@@ -41,10 +42,15 @@ import { AdminAuthGuardService } from './services/admin-auth-guard.service';
             url: 'admin/products/new'
           }
         ]
+        // END BREADCRUMB DATA
       }, canActivate: [AuthGuardService,AdminAuthGuardService]}, 
+      // END ROUTE
+
+      // BEGIN ROUTE
       {path: 'admin/products/:id', component: ProductFormComponent,      
       data: {
         title: 'New Product',
+        // BEGIN BREADCRUMB DATA
         breadcrumb: [
           {
             label: 'Home',
@@ -59,10 +65,15 @@ import { AdminAuthGuardService } from './services/admin-auth-guard.service';
             url: 'admin/products/:id'
           }
         ]
+        // END BREADCRUMB DATA
       }, canActivate: [AuthGuardService,AdminAuthGuardService]},
+      // END ROUTE
+
+      // BEGIN ROUTE
       {path: 'admin/products', component: AdminProductsComponent,      
       data: {
         title: 'Admin Products',
+        // BEGIN BREADCRUMB DATA
         breadcrumb: [
           {
             label: 'Home',
@@ -73,10 +84,15 @@ import { AdminAuthGuardService } from './services/admin-auth-guard.service';
             url: 'admin/products'
           }
         ]
+        // END BREADCRUMB DATA
       }, canActivate: [AuthGuardService, AdminAuthGuardService]},
+      // END ROUTE
+
+      // BEGIN ROUTE
       {path: 'admin/orders', component: AdminOrdersComponent,      
       data: {
         title: 'Admin View Order',
+        // BEGIN BREADCRUMB DATA
         breadcrumb: [
           {
             label: 'Home',
@@ -87,8 +103,11 @@ import { AdminAuthGuardService } from './services/admin-auth-guard.service';
             url: 'admin/orders'
           }
         ]
-      }, canActivate: [AuthGuardService,AdminAuthGuardService]},         
+        // END BREADCRUMB DATA
+      }, canActivate: [AuthGuardService,AdminAuthGuardService]},  
+      // END ROUTE       
     ])
+    // END ADMIN MODULE ROUTES
   ]
 })
 export class AdminModule { }

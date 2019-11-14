@@ -69,7 +69,7 @@
 
     <!-- BEGIN PRODUCT PREVIEW -->
     <div *ngIf="(product | json) != '{}'" class="col">
-        <h5 class="mb-3 mb-md-0">
+        <h5 class="mb-3 mb-md-0 d-flex justify-content-center pb-2 pt-2 pt-md-0">
             Product Preview
         </h5>
         <product-card class="d-flex justify-content-center" [product]="product" [show-actions]=false></product-card>

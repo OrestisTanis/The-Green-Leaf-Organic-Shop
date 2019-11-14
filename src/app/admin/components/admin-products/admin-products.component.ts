@@ -41,7 +41,7 @@ export class AdminProductsComponent implements OnDestroy {
     });   
   }
 
-  // Filter table by query
+  // Filters table by query
   filter(query: string){
 
     this.dataSource.data = (query) ?

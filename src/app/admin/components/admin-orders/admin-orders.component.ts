@@ -1,7 +1,6 @@
 import { UserService } from '../../../shared/services/user.service';
-import { Order } from '../../../shared/models/order';
 import { OrderService } from '../../../shared/services/order.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
@@ -10,8 +9,8 @@ import { Subscription } from 'rxjs';
   templateUrl: './admin-orders.component.html',
   styleUrls: ['./admin-orders.component.scss']
 })
-export class AdminOrdersComponent implements OnInit, OnDestroy {
-  orders: any;
+export class AdminOrdersComponent implements OnDestroy {
+  orders: any[];
   orderSubscription: Subscription;
   userSubscription: Subscription;
 
@@ -34,9 +33,6 @@ export class AdminOrdersComponent implements OnInit, OnDestroy {
         
       }
     });  
-  }
-
-  ngOnInit() {
   }
 
   ngOnDestroy(){

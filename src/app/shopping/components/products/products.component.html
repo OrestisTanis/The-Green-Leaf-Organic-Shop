@@ -33,13 +33,13 @@
         </div>                 
         
         <!-- BEGIN PAGINATION -->
-        <div class="col d-flex justify-content-center">
+        <div class="col d-flex justify-content-center mt-5">
             <ul class="pagination">
                 <li (click)="goToFirstPage()" class="page-item" class="disabled">
                     <a class="page-link">«</a>
                 </li>
                 <li (click)="goToPage(i+1)" [class.active]="activePage == i+1" *ngFor="let n of pageArray(numberOfPages); let i = index" class="page-item">
-                    <a class="page-link  pagination" href="#">{{i+1}}</a>
+                    <a class="page-link pagination">{{i+1}}</a>
                 </li>
                 <li (click)="goToLastPage()" class="page-item">
                     <a class="page-link">»</a>

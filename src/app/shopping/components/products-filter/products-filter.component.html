@@ -29,10 +29,10 @@
                                 <!-- END FILTER BY CATEGORY -->
 
                                 <!-- BEGIN FILTER BY PRICE -->
-                                <div class="col-5">
-                                    <h6 class="pl-1">By Price</h6>
-                                    <button ngbDropdownItem class="btn price-button filter-button mb-1" (click)="orderAscending()" [class.active]="orderBy == 0">Ascending &nbsp;<fa-icon [icon]="faSortUp" transform="down-5"></fa-icon></button>
-                                    <button ngbDropdownItem class="btn price-button filter-button" (click)="orderDescending()" [class.active]="orderBy == 1">Desending &nbsp;<fa-icon [icon]="faSortDown" transform="up-3"></fa-icon></button>
+                                <div class="col-4">
+                                    <h6 class="pl-4">By Price</h6>
+                                    <button ngbDropdownItem class="btn price-button filter-button mb-1 text-center" (click)="orderAscending()" [class.active]="orderBy == 0">Ascending &nbsp;<fa-icon [icon]="faSortUp" transform="down-5"></fa-icon></button>
+                                    <button ngbDropdownItem class="btn price-button filter-button text-center" (click)="orderDescending()" [class.active]="orderBy == 1">Desending &nbsp;<fa-icon [icon]="faSortDown" transform="up-3"></fa-icon></button>
                                 </div>
                                 <!-- END FILTER BY PRICE -->
                             </div>
@@ -63,8 +63,8 @@
             <!-- BEGIN FILTER BY PRICE -->
             <h4>By Price:</h4>
             <form>
-                <button ngbDropdownItem class="btn filter-button mb-1" (click)="orderAscending()" [class.active]="orderBy == 0">Ascending &nbsp;<fa-icon [icon]="faSortUp" transform="down-5"></fa-icon></button>
-                <button ngbDropdownItem class="btn filter-button" (click)="orderDescending()" [class.active]="orderBy == 1">Desending &nbsp;<fa-icon [icon]="faSortDown" transform="up-3"></fa-icon></button>
+                <button ngbDropdownItem class="btn price-button-md filter-button mb-1" (click)="orderAscending()" [class.active]="orderBy == 0">Ascending &nbsp;<fa-icon [icon]="faSortUp" transform="down-5"></fa-icon></button>
+                <button ngbDropdownItem class="btn price-button-md filter-button" (click)="orderDescending()" [class.active]="orderBy == 1">Desending &nbsp;<fa-icon [icon]="faSortDown" transform="up-3"></fa-icon></button>
             </form>
             <!-- END FILTER BY PRICE -->
         </div>  

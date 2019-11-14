@@ -146,14 +146,17 @@ export class ProductsComponent implements OnInit, OnDestroy {
   goToPage(pageNumber){    
     if (pageNumber!==this.activePage){
       this.activePage = pageNumber;
+      this.scrollToTop();
       this.populatePageProducts(this.filteredProducts$);
     }
   }
+ 
 
   // Jump to 1st page
   goToFirstPage(){
     if (this.activePage !== 1){
       this.activePage = 1;
+      this.scrollToTop();
       this.populatePageProducts(this.filteredProducts$);
     }
   }
@@ -162,6 +165,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   goToLastPage(){
     if(this.activePage !== this.numberOfPages){
       this.activePage = this.numberOfPages;
+      this.scrollToTop();
       this.populatePageProducts(this.filteredProducts$);;
     }
   }
@@ -197,10 +201,16 @@ export class ProductsComponent implements OnInit, OnDestroy {
         return result = temp.sort((a,b) => (a.price > b.price) ? -1 : 1);
       else         
         return prods;
-    }
-    
-    
-
-    
+    }    
   }
+
+  
+  scrollToTop() {    
+    let body = document.body; // Safari
+    let html = document.documentElement; // Chrome, Firefox, IE and Opera places the overflow at the <html> level, unless else is specified. Therefore, we use the documentElement property for these browsers
+
+    body.scrollTop -= 10000;
+    html.scrollTop -= 10000;
+  }
+  
 }

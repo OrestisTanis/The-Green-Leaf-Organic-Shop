@@ -1,38 +1,43 @@
+<!-- BEGIN ADD NEW PRODUCT BUTTON -->
 <p class="pt-3 pt-md-0">
     <button class="btn btn-primary" routerLink='/admin/products/new'>Add New Product</button>
 </p>
+<!-- END ADD NEW PRODUCT BUTTON -->
+
+<!-- BEGIN SEARCH INPUT FIELD -->
 <p>
     <input #query (keyup)="filter(query.value)" type="text" class="form-control" placeholder="Search...">
 </p>
+<!-- END SEARCH INPUT FIELD -->
 
-<!-- Begin Mat-Table -->
+<!-- BEGIN MAT-TABLE -->
 <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-        <!-- Position Column -->
+        <!-- POSITION COLUMN -->
         <ng-container matColumnDef="position">
             <th mat-header-cell *matHeaderCellDef> # </th>
             <td mat-cell *matCellDef="let product; let i=index"> {{i+1}}&nbsp;&nbsp;&nbsp;</td>
         </ng-container>
         
-        <!-- Name Column -->
+        <!-- NAME COLUMN -->
         <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
             <td mat-cell *matCellDef="let product"> {{product.name}} </td>
         </ng-container>
 
-        <!-- Category Column -->
+        <!-- CATEGORY COLUMN -->
         <ng-container matColumnDef="category">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
                 <td mat-cell *matCellDef="let product"> {{product.category}} </td>
             </ng-container>
         
-        <!-- Price Column -->
+        <!-- PRICE COLUMN -->
         <ng-container matColumnDef="price">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
             <td mat-cell *matCellDef="let product"> {{product.price | currency:'USD'}} </td>
         </ng-container>
         
-        <!-- Edit Column -->
+        <!-- EDIT COLUMN -->
         <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let product">                 
@@ -44,10 +49,11 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
-    <!-- Pagination -->
+    <!-- BEGIN PAGINATION -->
     <mat-paginator [pageSize]="pageSize"
                 [pageSizeOptions]="pageSizeOptions">
     </mat-paginator>
+    <!-- END PAGINATION -->
 
 </div>
-<!-- End Mat-Table -->
+<!-- END MAT-TABLE -->

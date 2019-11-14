@@ -51,7 +51,7 @@ import { ShoppingModule } from './shopping/shopping.module';
               url: '/'
             },
             {
-              label: 'Login',
+              label: 'Sign In',
               url: '/login'
             }
           ]

@@ -60,6 +60,11 @@ $primary-color-dark: #99b100;
     background-color:$primary-color-dark;
     border-color:$primary-color-dark;
 }
+.btn-primary.disabled, .btn-primary:disabled {
+    color: #fff;
+    background-color: $primary-color;
+    border-color: $primary-color;
+}
 
 #search-button {
     background-color: $primary-color;
@@ -97,21 +102,67 @@ $primary-color-dark: #99b100;
     border-color: $primary-color;
 }
 
+// LOGIN WITH FACEBOOK BUTTON
+$fb-color : #3b5998;
+
+.btn-fb {
+    color: floralwhite;
+    border-color:floralwhite;
+    background-color: $fb-color;
+}
+.btn-fb:not(:disabled):not(.disabled):active{
+    color: #fff;
+    background-color: $fb-color;
+    border-color:$fb-color;
+}
+.btn-fb:not(:disabled):not(.disabled).active:focus, .btn-fb:not(:disabled):not(.disabled):active:focus {
+    box-shadow: 0 0 0 0.2rem $fb-color;
+}
+.btn-fb:focus {
+    box-shadow: 0 0 0 0.0rem rgba($fb-color,.25);
+}
+.btn-fb:hover {
+    background-color: $fb-color;
+    color: white;
+    border-color: $fb-color;
+}
+
+// LOGIN WITH GOOGLE BUTTON
+$google-color : #DB4437;
+.btn-google {
+    color: floralwhite;
+    border-color:floralwhite;
+    background-color: $google-color;
+}
+.btn-google:not(:disabled):not(.disabled):active{
+    color: #fff;
+    background-color: $google-color;
+    border-color:$google-color;
+}
+.btn-google:not(:disabled):not(.disabled).active:focus, .btn-google:not(:disabled):not(.disabled):active:focus {
+    box-shadow: 0 0 0 0.2rem $google-color;
+}
+.btn-google:focus {
+    box-shadow: 0 0 0 0.0rem rgba($google-color,.25);
+}
+.btn-google:hover {
+    background-color: $google-color;
+    color: white;
+    border-color: $google-color;
+}
+
 // PAGINATION
 .pagination{
     color:black;
 }
-
 .pagination :hover{
     cursor:pointer;
 }
-
 .pagination:focus {
     z-index: 2;
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgba($primary-color, 0);
 }
-
 .page-item.active .pagination {
     z-index: 1;
     color: #fff;
