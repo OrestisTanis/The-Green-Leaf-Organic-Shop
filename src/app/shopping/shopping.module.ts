@@ -1,3 +1,4 @@
+import { AdminViewOrderComponent } from './../shared/components/admin-view-order/admin-view-order.component';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
@@ -98,7 +99,25 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
               url: '/order-success/:id'
             }            
           ]
-        }, canActivate: [AuthGuardService]},       
+        }, canActivate: [AuthGuardService]},      
+        {path: 'my/orders/:id', component: AdminViewOrderComponent,      
+      data: {
+        title: 'My Orders',
+        breadcrumb: [
+          {
+            label: 'Home',
+            url: '/'
+          },
+          {
+            label: 'My Orders',
+            url: 'my/orders'
+          },
+          {
+            label: 'View Order',
+            url: 'my/orders/:id'
+          }
+        ]
+      }, canActivate: [AuthGuardService]},          
       {path: 'my/orders', component: MyOrdersComponent,      
       data: {
         title: 'My Orders',
@@ -112,7 +131,8 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
             url: 'my/orders'
           }
         ]
-      }, canActivate: [AuthGuardService]},         
+      }, canActivate: [AuthGuardService]},
+      
     ]),
   ]
 })

@@ -1,5 +1,5 @@
 import { CategoryService } from '../../../shared/services/category.service';
-import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { faFilter, faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
@@ -10,19 +10,19 @@ import { OrderBy } from 'src/app/shared/models/orderBy';
   templateUrl: './products-filter.component.html',
   styleUrls: ['./products-filter.component.scss']
 })
-export class ProductsFilterComponent implements OnInit, OnDestroy {
-  categories$: any;
+export class ProductsFilterComponent implements OnDestroy {
+  categories$: any[];
   categorySubscription: Subscription;
   selectedCategories: string[] = [];
-  public isCollapsed = false;
-  orderBy = OrderBy.None;
+  public isCollapsed = false; // Flag for Filter Collapse
+  orderBy = OrderBy.None; // Enum for pointing Order of Products
 
   // Font-Awesome Icons
   faSortUp = faSortUp; 
   faSortDown = faSortDown; 
   faFilter = faFilter;
 
-  // @Input('selectedCategory') selectedCategory : string;
+  // Send data to parent component
   @Output() categoryValueChange = new EventEmitter<string[]>();
   @Output() orderValueChange = new EventEmitter<OrderBy>();
 
@@ -35,19 +35,12 @@ export class ProductsFilterComponent implements OnInit, OnDestroy {
           key: a.key, ...a.payload.val() 
         }))
     )).subscribe(categories => {
-      this.categories$ = categories;         
-      
+      this.categories$ = categories;  
     });
    }
-  ngOnInit() {
-  }
-
-  ngOnDestroy() {    
-    this.categorySubscription.unsubscribe;
-  }
-
-  setFilter(event){
-    
+ 
+  // Called when the user clicks on any of the 'Order by Price' buttons
+  setFilter(event){    
     if (this.selectedCategories.includes(event.target.name))
     {
       let index = this.selectedCategories.indexOf(event.target.name);
@@ -59,6 +52,7 @@ export class ProductsFilterComponent implements OnInit, OnDestroy {
     this.categoryValueChange.emit(this.selectedCategories);
   }
 
+  // Called when the user clicks on 'Order by Price: Ascending" button
   orderAscending(){
     if(this.orderBy !== OrderBy.Ascending)
     {
@@ -71,6 +65,7 @@ export class ProductsFilterComponent implements OnInit, OnDestroy {
     }
   }
 
+  // Called when the user clicks on 'Order by Price: Descending" button
   orderDescending(){
     if(this.orderBy !== OrderBy.Descending)
     {
@@ -81,6 +76,10 @@ export class ProductsFilterComponent implements OnInit, OnDestroy {
       this.orderBy = OrderBy.None;
       this.orderValueChange.emit(this.orderBy);
     }
+  }
+
+  ngOnDestroy() {    
+    this.categorySubscription.unsubscribe;
   }
 
 }

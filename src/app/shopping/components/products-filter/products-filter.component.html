@@ -1,15 +1,3 @@
-<!-- <div class="sticky-top">
-    <ul class="list-group">
-        <li class="list-group-item" [class.active]="!selectedCategory">
-            <a routerLink="/">All Categories</a>
-        </li>
-        <li *ngFor="let category of categories$" class="list-group-item" [class.active]="selectedCategory === category.name">
-            <a routerLink="/" [queryParams]="{category: category.name}">{{category.name}}</a>     
-        </li>            
-    </ul>
-</div> -->
-
-
 <div class="sticky-top">
     <div class="container-fluid px-0 mt-4 mt-md-0">
         <!-- BEGIN SCREENSIZE < MD -->
@@ -26,7 +14,7 @@
             <div class="col-12">
                 <div id="collapseExample" [ngbCollapse]="!isCollapsed">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body pr-0">
                             <div class="row">
                                 <!-- BEGIN FILTER BY CATEGORY -->
                                 <div class="col-6">
@@ -42,9 +30,9 @@
 
                                 <!-- BEGIN FILTER BY PRICE -->
                                 <div class="col-5">
-                                    <h6 class="pl-4">By Price</h6>
-                                    <button ngbDropdownItem class="btn filter-button" (click)="orderAscending()" [class.active]="orderBy == 0">Ascending &nbsp;<fa-icon [icon]="faSortUp" transform="down-5"></fa-icon></button>
-                                    <button ngbDropdownItem class="btn filter-button" (click)="orderDescending()" [class.active]="orderBy == 1">Desending &nbsp;<fa-icon [icon]="faSortDown" transform="up-3"></fa-icon></button>
+                                    <h6 class="pl-1">By Price</h6>
+                                    <button ngbDropdownItem class="btn price-button filter-button mb-1" (click)="orderAscending()" [class.active]="orderBy == 0">Ascending &nbsp;<fa-icon [icon]="faSortUp" transform="down-5"></fa-icon></button>
+                                    <button ngbDropdownItem class="btn price-button filter-button" (click)="orderDescending()" [class.active]="orderBy == 1">Desending &nbsp;<fa-icon [icon]="faSortDown" transform="up-3"></fa-icon></button>
                                 </div>
                                 <!-- END FILTER BY PRICE -->
                             </div>
@@ -62,9 +50,9 @@
             <hr style="height:2px">
             
             <!-- BEGIN FILTER BY CATEGORY -->
-            <h4>By category:</h4>
+            <h4 class="pb-1">By Category:</h4>
             <form>
-                <div *ngFor="let category of categories$; let i=index;" class="form-group form-check">
+                <div *ngFor="let category of categories$; let i=index;" class="form-group form-check pb-1">
                     <input (change)="setFilter($event)" name="{{category.name}}" type="checkbox" class="form-check-input" id="exampleCheck{{i}}">
                     <span>&nbsp;{{category.name}}</span>
                 </div>
@@ -75,7 +63,7 @@
             <!-- BEGIN FILTER BY PRICE -->
             <h4>By Price:</h4>
             <form>
-                <button ngbDropdownItem class="btn filter-button" (click)="orderAscending()" [class.active]="orderBy == 0">Ascending &nbsp;<fa-icon [icon]="faSortUp" transform="down-5"></fa-icon></button>
+                <button ngbDropdownItem class="btn filter-button mb-1" (click)="orderAscending()" [class.active]="orderBy == 0">Ascending &nbsp;<fa-icon [icon]="faSortUp" transform="down-5"></fa-icon></button>
                 <button ngbDropdownItem class="btn filter-button" (click)="orderDescending()" [class.active]="orderBy == 1">Desending &nbsp;<fa-icon [icon]="faSortDown" transform="up-3"></fa-icon></button>
             </form>
             <!-- END FILTER BY PRICE -->

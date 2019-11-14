@@ -1,57 +1,80 @@
-
+<!-- BEGIN NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="background-color: rgb(255, 255, 255)!important">
   <div class="container">
+
+    <!-- BEGIN LOGO -->
     <a class="navbar-brand" routerLink="/" >
       <fa-icon class="pl-4 pl-md-0" [icon]="faLeaf" id="logo" style="font-size:120%;"></fa-icon>
     </a>
+    <!-- END LOGO -->
+
+    <!-- BEGIN COLLAPSE BUTTON -->
     <button style="margin-right:30px!important;" class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarsExampleDefault" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+    <!-- END COLLAPSE BUTTON -->
 
-
+    <!-- BEGIN COLLAPSIBLE ITEMS -->
     <div class="collapse navbar-collapse" id="navbarsExampleDefault" [ngbCollapse]="isCollapsed">
-      <ul class="navbar-nav mr-auto">
-        <li class="d-none d-lg-inline-block">
-            <form class="form-inline my-2 my-lg-0" style="padding-left:50px">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
-              </form>
-        </li> 
-      </ul>
+
+      <div class="mr-auto"></div>
+      <!-- BEGIN NAVBAR LINKS -->
       <ul class="navbar-nav pl-3" [class.collapsed]="!isCollapsed">
+
+        <!-- BEGIN PRODUCTS -->
         <li class="nav-item">
-          <a class="nav-link" routerLink="/">Products<span class="sr-only">(current)</span></a>
+          <a class="nav-link" routerLink="/" (click)="closeNavbar()">Products<span class="sr-only">(current)</span></a>
         </li>
+        <!-- END PRODUCTS -->
+
+        <!-- BEGIN SHOPPING CART -->
         <li class="nav-item">
-            <a class="nav-link" routerLink="/shopping-cart">
+            <a class="nav-link" routerLink="/shopping-cart" (click)="closeNavbar()">
               <fa-icon [icon]="faShoppingCart" style="font-size:120%;"></fa-icon>
               <ng-container *ngIf="cart$ | async as cart">
                 <span *ngIf="cart.TotalItemCount>0" class="badge badge-warning badge-pill" >{{cart.TotalItemCount}}</span>
               </ng-container>
             </a>
         </li>  
-        <li *ngIf="appUser; else anonymousUser" ngbDropdown class="nav-item dropdown" >
-            <a ngbDropdownToggle class="nav-link dropdown-toggle"  id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
-                {{ appUser.name }}
-            </a>
-            <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01" >
-              <a class="dropdown-item" ngbDropdownItem routerLink="/my/orders">My Orders</a>
-              <ng-container *ngIf="appUser.isAdmin">
-                <a class="dropdown-item" ngbDropdownItem routerLink="/admin/orders">Manage Orders</a>
-                <a class="dropdown-item" ngbDropdownItem routerLink="/admin/products">Manage Products</a>
-              </ng-container>
-              <a class="dropdown-item" ngbDropdownItem (click)="logout()">Log Out</a>
-            </div>
-        </li>
-        <ng-template #anonymousUser>
-          <li class="nav-item">
-              <a class="nav-link" routerLink="/login">Login<span class="sr-only">(current)</span></a>
+        <!-- END SHOPPING CART -->
+
+        <!-- BEGIN USER PROFILE LINK -->
+
+          <!-- BEGIN AUTHENTICATED USER LINKS -->
+          <li *ngIf="appUser; else anonymousUser" ngbDropdown class="nav-item dropdown" >
+              <a ngbDropdownToggle class="nav-link dropdown-toggle"  id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+                  {{ appUser.name }}
+              </a>
+              <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01" >
+                <hr>
+                <a class="dropdown-item" ngbDropdownItem routerLink="/my/orders" (click)="closeNavbar()">My Orders</a>
+                <ng-container *ngIf="appUser.isAdmin">
+                  <a class="dropdown-item" ngbDropdownItem routerLink="/admin/orders" (click)="closeNavbar()">Manage Orders</a>
+                  <a class="dropdown-item" ngbDropdownItem routerLink="/admin/products" (click)="closeNavbar()">Manage Products</a>
+                </ng-container>
+                <a class="dropdown-item" ngbDropdownItem (click)="logout()" (click)="closeNavbar()">Log Out</a>
+              </div>
           </li>
-        </ng-template> 
+          <!-- END AUTHENTICATED USER LINKS -->
+
+          <!-- BEGIN ANONYMOUS USER LINK - LOGIN -->
+          <ng-template #anonymousUser>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/login" (click)="closeNavbar()">Login<span class="sr-only">(current)</span></a>
+            </li>
+          </ng-template> 
+          <!-- END ANONYMOUS USER LINK - LOGIN -->
+
+        <!-- END USER PROFILE LINK -->
       </ul>
+      <!-- END NAVBAR LINKS -->
     </div>
+    <!-- END COLLAPSIBLE ITEMS -->
   </div>
 </nav>
+<!-- END NAVBAR -->
+
+<!-- BEGIN BREADCRUMB -->
 <div class="container-fluid">
     <div class="row">
         <div class="col breadcrumb w-100">
@@ -59,4 +82,5 @@
         </div>
     </div>
 </div>
+<!-- END BREADCRUMB -->
 

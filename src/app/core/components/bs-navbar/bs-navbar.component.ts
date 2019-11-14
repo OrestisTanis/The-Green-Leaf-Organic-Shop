@@ -19,36 +19,37 @@ export class BsNavbarComponent implements OnInit, OnDestroy {
   cartItemCount: number;
   subscription: Subscription;
   cart$: Observable<ShoppingCart>;
-  isCollapsed: boolean = true; // for toggling the navbar-toggle
-  faShoppingCart = faShoppingCart; //font-awesome icon
-  faLeaf = faLeaf; //font-awesome icon
+  isCollapsed: boolean = true; // for toggling the navbar
+
+  //Font-Awesome Icons
+  faShoppingCart = faShoppingCart;
+  faLeaf = faLeaf;
+
   constructor(private auth: AuthService, 
     private shoppingCartService: ShoppingCartService,
     ) { 
     auth.appUser$.subscribe(appUser => {
       this.appUser = appUser;
-      console.log("User: "+appUser);
     });
-
-    
   }
 
   logout() {
     this.auth.logout();
   }
+  
+  closeNavbar () {
+    let element: HTMLElement = document.getElementsByClassName( 'navbar-toggler' )[ 0 ] as HTMLElement;
+    if ( element.getAttribute( 'aria-expanded' ) == 'true' ) {
+        element.click();
+    }
+  }
 
   async ngOnInit() {
     this.cart$ = (await this.shoppingCartService.getCart());
-    
-    
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-
-  
-  
-
 
 }

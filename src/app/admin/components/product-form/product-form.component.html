@@ -1,13 +1,19 @@
-<div *ngIf="product" class="row">
+<div *ngIf="product" class="row pt-5 pt-md-0">
     <div class="col-md-6">
+            <!-- BEGIN PRODUCT FORM -->
             <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+
+                <!-- NAME FIELD -->
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input #name="ngModel" [(ngModel)]="product.name" name="name" type="text" id="name" class="form-control" required>
                 </div>
+                <!-- NAME VALIDATION -->
                 <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
                     <div *ngIf="name.errors.required">Name is required.</div>
                 </div>
+
+                <!-- PRICE FIELD -->
                 <label for="price">Price</label>
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
@@ -15,43 +21,61 @@
                     </div>
                     <input #price="ngModel" [(ngModel)]="product.price" name="price" type="number" id="price" class="form-control" required [min]="0">
                 </div> 
+                <!-- PRICE VALIDATION -->
                 <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger" >
                     <div *ngIf="price.errors.required">Price is required.</div>
                     <div *ngIf="price.errors.min"> Price must be higher than 0. </div>                    
-                </div>   
+                </div>  
+
+                <!-- CATEGORY FIELD  -->
                 <div class="form-group">
                     <label for="category">Category</label>
                     <select #category="ngModel" [(ngModel)]="product.category" name="category" type="text" id="category" class="form-control" required>
                         <option *ngFor="let c of categories$ | async" [value]="c.name">{{ c.name }}</option>
                     </select>
                 </div>
+                <!-- CATEGORY VALIDATION -->
                 <div *ngIf="category.invalid && (category.dirty || category.touched)" class="alert alert-danger">
                     <div *ngIf="category.errors.required">Category is required.</div>
-                </div>   
+                </div> 
+
+                <!-- IMAGE URL FIELD -->
                 <div class="form-group">
                     <label for="imageUrl">Image URL</label>
                     <input #imageUrl="ngModel" [(ngModel)]="product.imageUrl" name="imageUrl" type="text" id="imageUrl" class="form-control" required url>          
                 </div>
+                <!-- IMAGE URL VALIDATION -->
                 <div *ngIf="imageUrl.invalid && (imageUrl.dirty || imageUrl.touched)" class="alert alert-danger">
                     <div *ngIf="imageUrl.errors.required">Image URL is required.</div>
                     <div *ngIf="imageUrl.errors.url">Please provide a valid image URL.</div>
-                </div>  
-                <button *ngIf="creatingNewProduct; else updatingProduct" class="btn btn-primary mt-2" type="submit" >Add This Product</button>
+                </div> 
+
+                <!-- ADD PRODUCT BUTTON -->
+                <button *ngIf="creatingNewProduct; else updatingProduct" class="btn btn-primary mt-2 mb-3 mb-md-0" type="submit" >Add This Product</button>
+
+                <!-- UPDATE AND DELETE BUTTONS -->
                 <ng-template #updatingProduct>
-                    <button  class="btn btn-primary" type="button" (click)="updateProduct()">Update Product</button>
-                    <button  class="btn btn-danger ml-2" type="button" (click)="deleteProduct()">Delete Product</button>
-                </ng-template>                
-                <!--
-                <button type="button" class="btn btn-primary" (click)="f.resetForm()">Reset Form</button>
-                -->
+                    <div class="mb-4 mb-md-0 mt-4 mt-md-0">
+                        <!-- UPDATE PRODUCT BUTTON -->
+                        <button  class="btn btn-primary" type="button" (click)="updateProduct()">Update Product</button>
+                        <!-- DELETE PRODUCT BUTTON -->
+                        <button  class="btn btn-danger ml-2" type="button" (click)="deleteProduct()">Delete Product</button>
+                    </div>
+                </ng-template> 
+
             </form>
+            <!-- END PRODUCT FORM -->
     </div>
+
+    <!-- BEGIN PRODUCT PREVIEW -->
     <div *ngIf="(product | json) != '{}'" class="col">
-        <h5>
+        <h5 class="mb-3 mb-md-0">
             Product Preview
         </h5>
-        <product-card [product]="product" [show-actions]=false></product-card>
-    </div>    
+        <product-card class="d-flex justify-content-center" [product]="product" [show-actions]=false></product-card>
+    </div>  
+    <!-- END PRODUCT PREVIEW -->
+    
 </div>
 
     
