@@ -18,19 +18,17 @@ export class ShoppingCartService implements OnDestroy {
   
   constructor(private db : AngularFireDatabase) { }
 
-  private createCart(){   
+  private createCart(){   // Create entry in DB
     return this.db.list('/shopping-carts').push({
       dateCreateD : new Date().getTime()
     });
   }
-
-  getItem(cartId, productId: string): AngularFireObject<ShoppingItem>{       
-    console.log(this.db.object('/shopping-carts/'+cartId+"/items/"+productId));
+  
+  getItem(cartId, productId: string): AngularFireObject<ShoppingItem>{ 
     return this.db.object('/shopping-carts/'+cartId+"/items/"+productId);
   }
- 
   
-   async getCart(): Promise<Observable<ShoppingCart>> {
+  async getCart(): Promise<Observable<ShoppingCart>> {
     let cartId = await this.getOrCreateCart();
    
     let cart$:AngularFireObject<ShoppingCart> = this.db.object('/shopping-carts/'+cartId);
@@ -45,13 +43,14 @@ export class ShoppingCartService implements OnDestroy {
   private async getOrCreateCart():Promise<string>{
     let cartId = localStorage.getItem('cartID');    
 
-    if(!cartId){ // Check for existing cart
+    // Check for existing cart
+    if(!cartId){  
       let result = await this.createCart();
       localStorage.setItem("cartID", result.key);
       return result.key;
     }    
-      //Get the Cart
-      return cartId;
+    // Get the Cart
+    return cartId;
   }
   
   async updateCart(product: Product, change: number){
@@ -62,10 +61,10 @@ export class ShoppingCartService implements OnDestroy {
       .subscribe(item => {        
         if(item){
           let quantity = item.quantity + change;
-          if (quantity === 0) return item$.remove(); // Deleting item from DB
+          if (quantity === 0) return item$.remove();    // Deleting item from DB
           else return item$.update({quantity:quantity}) //Modify quantity of existing item
         }
-        return item$.update({product, quantity:1}) //Creating item in DB  
+        return item$.update({product, quantity:1})      //Creating item in DB  
       })
   }
 

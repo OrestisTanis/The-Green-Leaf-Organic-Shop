@@ -12,10 +12,8 @@ export class ProductQuantityComponent {
   @Input('product') product:Product;  
   @Input('shopping-cart') shoppingCart: ShoppingCart;
   cartId: string;
-  
 
   constructor(private cartService: ShoppingCartService) { }
-
 
   addToCart(){
     this.cartService.updateCart(this.product,1);

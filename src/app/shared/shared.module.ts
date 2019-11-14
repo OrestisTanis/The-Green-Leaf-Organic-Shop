@@ -22,9 +22,7 @@ import { MatTableModule, MatPaginatorModule, MatSliderModule, MatSortModule } fr
 import { NgDynamicBreadcrumbModule } from 'ng-dynamic-breadcrumb';
 
 
-
 @NgModule({
-
   imports: [
     CommonModule,
     FontAwesomeModule,
@@ -40,9 +38,11 @@ import { NgDynamicBreadcrumbModule } from 'ng-dynamic-breadcrumb';
     MatSortModule, 
     NgDynamicBreadcrumbModule,
     RouterModule.forChild([
-      {path: 'admin/orders/:id', component: AdminViewOrderComponent,      
+      // BEGIN ROUTE
+      {path: 'admin/orders/:id', component: AdminViewOrderComponent,
       data: {
         title: 'Admin View Order',
+        // BEGIN BREADCRUMB DATA
         breadcrumb: [
           {
             label: 'Home',
@@ -57,15 +57,15 @@ import { NgDynamicBreadcrumbModule } from 'ng-dynamic-breadcrumb';
             url: 'admin/orders/:id'
           }
         ]
-      }, canActivate: [AuthGuardService,AdminAuthGuardService]},          
+        // END BREADCRUMB DATA
+      }, canActivate: [AuthGuardService,AdminAuthGuardService]},    
+      // END ROUTE      
     ]),
   ],
   declarations: [
     ProductQuantityComponent,
     ProductCardComponent,
     AdminViewOrderComponent,
-    
-    
   ],
   providers: [
     UserService,

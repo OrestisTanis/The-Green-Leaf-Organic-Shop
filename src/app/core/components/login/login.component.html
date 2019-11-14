@@ -1,27 +1,39 @@
-<div class="container">
+<!-- BEGIN SIGN IN -->
+<div class="container">    
     <div class="row">
         <div class="col d-flex justify-content-center">
             <div class="card" style="width: 500px;">
                 <div class="card-body">
+
+                    <!-- BEGIN TEXT AND SUBTEXT -->
                     <div class="pt-3 pb-3">
                         <h5 class="card-title text-center">New to The Grean Leaf?</h5>
                         <h6 class="card-subtitle mb-2 text-muted text-center">Sign in and start shopping!</h6>
                     </div>
+                    <!-- END TEXT AND SUBTEXT -->
+
+                    <!-- BEGING SIGN IN BUTTONS -->
                     <div class="row">
+                        <!-- BEGIN FB SIGN IN BUTTON -->
                         <div class="col-12 text-center">
                             <p>
                                 <button class="btn btn-primary btn-block btn-lg btn-fb" (click)="loginFacebook()">Sign in with Facebook</button>
                             </p>
                         </div>
+                        <!-- END FB SIGN IN BUTTON -->
+
+                        <!-- BEGIN GOOGLE SIGN IN BUTTON -->
                         <div class="col-12 d-flex justify-content-center">
                             <button class="btn btn-primary btn-block btn-lg btn-google" (click)="loginGoogle()">Sign in with Google</button>                            
                         </div>
+                        <!-- END GOOGLE SIGN IN BUTTON -->
                     </div>
+                    <!-- END SIGN IN BUTTONS -->
                 </div>
             </div>
         </div>
     </div>
-    
 </div>
+<!-- END SIGN IN -->
 
 

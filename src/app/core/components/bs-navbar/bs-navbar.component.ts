@@ -19,7 +19,7 @@ export class BsNavbarComponent implements OnInit, OnDestroy {
   cartItemCount: number;
   subscription: Subscription;
   cart$: Observable<ShoppingCart>;
-  isCollapsed: boolean = true; // for toggling the navbar
+  isCollapsed: boolean = true;      // Flag for Navbar Toggle
 
   //Font-Awesome Icons
   faShoppingCart = faShoppingCart;

@@ -1,3 +1,4 @@
+<!-- BEGIN PRODUCT CARD -->
 <div class="card h-100" style="width: 16rem;">
     <img *ngIf="product.imageUrl" src="{{product.imageUrl}}" class="card-img-top" alt="product image">
     <div class="card-body d-flex">
@@ -7,10 +8,13 @@
             <p *ngIf="product.category" class="card-text">Category: {{product.category}}</p>   
         </div>     
     </div>
+    <!-- BEGIN BUTTONS -->
     <div *ngIf="showActions && shoppingCart" class="card-footer">
         <button *ngIf="shoppingCart.getQuantity(product)===0; else updateQuantity" class="btn btn-secondary btn-block" (click)="addToCart()">Add to Cart</button>
     </div>
     <ng-template #updateQuantity>
        <product-quantity [product]="product" [shopping-cart]="shoppingCart"></product-quantity>
     </ng-template>
+    <!-- END BUTTONS -->
 </div>
+<!-- END PRODUCT CARD -->

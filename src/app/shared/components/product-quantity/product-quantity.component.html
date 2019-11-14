@@ -1,9 +1,11 @@
 <div class="row no-gutters">
+    <!-- DECREASE QUANTITY BUTTON -->
     <div class="col-2">
         <button class="btn btn-secondary btn-block" (click)="removeFromCart()">-</button>
     </div>
-    <div class="col text-center pt-2 pl-2">{{shoppingCart.getQuantity(product)}}</div>
-    
+
+    <!-- INCREASE QUANTITY BUTTON -->
+    <div class="col text-center pt-2 pl-2">{{shoppingCart.getQuantity(product)}}</div>    
     <div class="col-2">
         <button class="btn btn-secondary btn-block" (click)="addToCart()" >+</button>
     </div>            
