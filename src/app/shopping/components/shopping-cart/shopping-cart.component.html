@@ -1,50 +1,82 @@
-
 <div class="container-fluid">
     <div class="row">
-        <div class="col">
+        <div class="col">            
             <h2 class="d-md-none pt-4">Shopping Cart</h2>
-            <h1 class="d-none d-md-block">Shopping Cart</h1>
+            <h1 class="d-none d-md-block">Shopping Cart</h1>            
             <div *ngIf="cart$ | async as cart" class="table-responsive pt-1">
                 <p> You have {{ cart.TotalItemCount }} items in your shopping cart.    
+                    <!-- BEGIN CLEAR SHOPPING CART BUTTON -->
                     <button *ngIf="cart.TotalItemCount > 0" class="btn btn-sm btn-light mb-1" (click)="clearCart()" [disabled]="(cart.TotalItemCount === 0)">
                         Clear Shopping Cart
                     </button>
+                    <!-- END CLEAR SHOPPING CART BUTTON -->
                 </p>
+                <!-- BEGIN SHOPPING CART ITEMS TABLE -->
                 <table class="table">
-                    <thead>
+                    <thead>                        
+                        <!-- BEGIN COLUMNS FOR SIZE < MD -->
                         <tr>
+                            <!-- THUMBNAIL COLUMN -->
                             <th class="d-none" scope="col"></th>
+                            <!-- PRODUCT COLUMN -->
                             <th scope="col" class="d-md-none w-49">Product</th>
+                            <!-- QUANTITY COLUMN -->
                             <th scope="col" class="d-md-none text-center w-50">Quantity</th>
+                            <!-- PRICE COLUMN -->
                             <th scope="col" class="d-md-none text-right w-25">Price</th>
                         </tr>
+                        <!-- END COLUMNS FOR SIZE < MD -->
+
+                        <!-- BEGIN COLUMNS FOR SIZE > MD -->
                         <tr>
+                            <!-- THUMBNAIL COLUMN -->
                             <th class="d-none d-md-table-cell w-10" scope="col"></th>
+                            <!-- PRODUCT COLUMN -->
                             <th scope="col" class="d-none d-md-table-cell w-30">Product</th>
+                            <!-- QUANTITY COLUMN -->
                             <th scope="col" class="d-none d-md-table-cell text-center w-40">Quantity</th>
+                            <!-- PRICE COLUMN -->
                             <th scope="col" class="d-none d-md-table-cell text-right w-40">Price</th>
                         </tr>
-                    </thead>
-                    <tbody>
+                        <!-- END COLUMNS FOR SIZE > MD -->
+                    </thead>                    
+                    <tbody>  
+                        <!-- BEGIN COLUMNS FOR SIZE < MD -->                      
                         <tr *ngFor="let item of cart.itemsArr;  let i=index" class="text-center-vert">
+                            <!-- THUMBNAIL COLUMN -->
                             <th class="d-none d-md-table-cell" style="padding-left:0px" scope="row"><img [src]="item.product.imageUrl" class="thumbnail"></th>
+                            <!-- PRODUCT COLUMN -->
                             <td>{{item.product.name}}</td>
+                            <!-- QUANTITY COLUMN -->
                             <td class="text-center"> <product-quantity [product]="item.product" [shopping-cart]="cart"></product-quantity></td>
+                            <!-- PRICE COLUMN -->
                             <td class="text-right">{{item.TotalPrice | currency:'EUR'}}</td>
                         </tr>  
+                        <!-- END COLUMNS FOR SIZE < MD -->
+
+                        <!-- BEGIN COLUMNS FOR SIZE > MD -->
                         <tr>
+                            <!-- THUMBNAIL COLUMN -->
                             <td class="d-none d-md-table-cell"></td>
+                            <!-- PRODUCT COLUMN -->
                             <th></th>
+                            <!-- QUANTITY COLUMN -->
                             <th class="text-center">Total</th> 
+                            <!-- PRICE COLUMN -->
                             <th class="text-right">
                                 {{ cart.TotalPrice | currency:'EUR' }}
                             </th>                              
-                        </tr>     
+                        </tr>   
+                        <!-- END COLUMNS FOR SIZE > MD -->  
                     </tbody>
                 </table> 
+                <!-- END SHOPPING CART ITEMS TABLE -->
+
+                <!-- BEGIN CHECKOUT BUTTON -->
                 <button class="btn mt-4 check-out-button" [disabled]="(cart.TotalItemCount === 0)" [class.btn-primary]="(cart.TotalItemCount > 0)" routerLink="/check-out">
                     Check Out
                 </button>  
+                <!-- END CHECKOUT BUTTON -->
             </div>
         </div>
     </div>

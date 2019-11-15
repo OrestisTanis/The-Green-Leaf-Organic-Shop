@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ShoppingCart } from '../../../shared/models/shopping-cart';
 
 @Component({
@@ -6,12 +6,8 @@ import { ShoppingCart } from '../../../shared/models/shopping-cart';
   templateUrl: './shopping-cart-summary.component.html',
   styleUrls: ['./shopping-cart-summary.component.scss']
 })
-export class ShoppingCartSummaryComponent implements OnInit {
+export class ShoppingCartSummaryComponent {
   @Input("cart") cart: ShoppingCart;
 
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }

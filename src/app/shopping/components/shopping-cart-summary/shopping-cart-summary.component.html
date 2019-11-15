@@ -4,14 +4,19 @@
         <p>You have {{cart.TotalItemCount}} items in your shopping cart.</p>
         <ul class="list-group list-group-flush">
             <li class="list-group-item">
-                <div class="row" *ngFor="let item of cart.itemsArr">
+                <div class="row" *ngFor="let item of cart.itemsArr">                    
+                    <!-- QUANTITY -->
                     <div class="col-7 col-md-9"> {{item.quantity}}&nbsp;x&nbsp;{{item.product.name}} </div>
+
+                    <!-- QUANTITY x PRICE -->
                     <div class="col-5 col-md-3 ml-auto text-right">{{item.quantity*item.product.price | currency:"EUR"}}</div>
                 </div>
             </li>                    
             <li class="list-group-item">
                 <div class="row">
                     <div class="col-7 col-md-9" style="font-weight:bold">Total</div>
+
+                    <!-- TOTAL PRICE -->
                     <div class="col-5 col-md-3 ml-auto text-right" style="font-weight:bold" >
                         {{cart.TotalPrice | currency:"EUR"}}
                     </div>

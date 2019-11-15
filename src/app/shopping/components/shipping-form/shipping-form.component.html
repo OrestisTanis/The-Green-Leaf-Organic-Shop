@@ -1,34 +1,55 @@
-<form #f="ngForm" (ngSubmit)="placeOrder(f)" novalidate>                
+<!-- BEGIN FORM -->
+<form #f="ngForm" (ngSubmit)="placeOrder(f)" novalidate>  
+
+    <!-- BEGIN NAME FIELD -->
     <div class="form-group">
         <label for="name">Name</label>
         <input #name="ngModel" [(ngModel)]="shipping.name" name="name" type="text" id="name" class="form-control" placeholder="Your name here..." required>                       
     </div>
+    <!-- VALIDATION -->
     <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
         <div *ngIf="name.errors.required">Name is required.</div>
-    </div>                
+    </div>  
+    <!-- END NAME FIELD --> 
+    
+    <!-- BEGIN ADDRESS FIELD -->
     <div class="form-group">
         <label for="address">Address</label>
         <input #address="ngModel" [(ngModel)]="shipping.address" name="address" type="text" class="form-control" id="adress" placeholder="Your address here..." required>
     </div>
+    <!-- VALIDATION -->
     <div *ngIf="address.invalid && (address.dirty || address.touched)" class="alert alert-danger">
         <div *ngIf="address.errors.required">Address is required.</div>
-    </div>                
+    </div>     
+    <!-- END ADDRESS FIELD -->
+
+    <!-- BEGIN CITY FIELD -->
     <div class="form-group">
         <label class="form-check-label" for="city">City</label>
         <input #city="ngModel" [(ngModel)]="shipping.city" name="city" type="text" class="form-control" id="city" required placeholder="Your city of residence...">       
     </div>
+    <!-- VALIDATION -->
     <div *ngIf="city.invalid && (city.dirty || city.touched)" class="alert alert-danger">
         <div *ngIf="city.errors.required">City name is required.</div>
     </div>
+    <!-- END CITY FIELD -->
+
+    <!-- BEGIN TELNUM FIELD -->
     <div class="form-group">
         <label for="telnum">Contact number</label>
         <input #telnum="ngModel" [(ngModel)]="shipping.telnum"  name="telnum" type="tel" numbersOnly class="form-control" id="telnum"   placeholder="Your phone number..." required [rangeLength]="[10, 10]">
     </div> 
+    <!-- VALIDATION -->
     <div *ngIf="telnum.invalid && (telnum.dirty || telnum.touched)" class="alert alert-danger">
         <div *ngIf="telnum.errors.required">A contact number is required.</div>
         <div *ngIf="telnum.errors.rangeLength">Contact number must have 10 digits.</div>                    
-    </div>               
+    </div>  
+    <!-- END TELNUM FIELD -->
+    
+    <!-- BEGIN PLACE ORDER BUTTON -->
     <p>
         <button type="submit" class="btn btn-primary mt-2" [disabled]="f.form.invalid">Place Order</button>
-    </p>    
+    </p> 
+    <!-- END PLACE ORDER BUTTON -->   
 </form>
+<!-- END FORM -->

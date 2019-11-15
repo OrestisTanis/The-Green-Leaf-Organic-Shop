@@ -41,11 +41,9 @@ export class OrderSuccessComponent implements OnInit, OnDestroy {
        })
     )
     .subscribe(appUser=>{          
-      this.order.username = appUser.name; 
-      console.log(this.order.username);
+      this.order.username = appUser.name;       
     })
-
-    console.log(this.router.url);
+ 
     if (this.router.url.includes("order-success")){
       this.orderSuccess = true;
     }

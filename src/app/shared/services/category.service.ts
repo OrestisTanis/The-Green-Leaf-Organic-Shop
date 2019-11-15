@@ -1,6 +1,5 @@
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +11,5 @@ export class CategoryService {
   getCategories() {
     return this.db.list('/categories', ref => ref.orderByChild('name'));
   }
-
 
 }

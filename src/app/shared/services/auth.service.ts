@@ -21,10 +21,6 @@ export class AuthService {
     private userService: UserService) {  
               
       this.user$ = this.afAuth.authState;
-      
-  }
-
-  ngOnInit() {
   }
 
   loginGoogle(){
@@ -40,14 +36,9 @@ export class AuthService {
   }
  
   logout() {
-    localStorage.removeItem('returnUrl');
-    
-    // The following two statements have the same functionality
-    //this.router.navigate(['/'], { relativeTo: this.route }); 
+    localStorage.removeItem('returnUrl');  
     this.router.navigateByUrl('/');
-    
     this.afAuth.auth.signOut();
-    
   }
 
   saveCurrentUrl(){
@@ -62,7 +53,6 @@ export class AuthService {
         else {
           return of(null);
         }
-        
       })
     )
   }    

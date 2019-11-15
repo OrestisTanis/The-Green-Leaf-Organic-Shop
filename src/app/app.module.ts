@@ -15,8 +15,6 @@ import { SharedModule } from './shared/shared.module';
 import { ProductsComponent } from './shopping/components/products/products.component';
 import { ShoppingModule } from './shopping/shopping.module';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,22 +27,30 @@ import { ShoppingModule } from './shopping/shopping.module';
     AdminModule,
     CoreModule,    
     AngularFireModule.initializeApp(environment.firebase, 'oshop'),   
+    // ROUTES
     RouterModule.forRoot([
+      //BEGIN ROUTE
       { 
         path: '', component: ProductsComponent,
         data: {
           title: 'Home',
+          // BEGIN BREADCRUMB DATA
           breadcrumb: [
             {
               label: 'Home',
               url: ''
             }
           ]
+          // END BREADCRUMB DATA
         },
-      },        
+      },  
+      //END ROUTE 
+
+      //BEGIN ROUTE    
       { path: 'login', component: LoginComponent,
         data: {
           title: 'login',
+          // BEGIN BREADCRUMB DATA
           breadcrumb: [
             {
               label: 'Home',
@@ -55,8 +61,10 @@ import { ShoppingModule } from './shopping/shopping.module';
               url: '/login'
             }
           ]
+          // END BREADCRUMB DATA
         },
-      },           
+      }, 
+      //END ROUTE          
     ]),
     BrowserAnimationsModule
   ],

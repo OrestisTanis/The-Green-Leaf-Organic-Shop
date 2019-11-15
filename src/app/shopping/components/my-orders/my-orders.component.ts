@@ -1,18 +1,18 @@
 import { AuthService } from '../../../shared/services/auth.service';
 import { UserService } from '../../../shared/services/user.service';
 import { OrderService } from '../../../shared/services/order.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { map, switchMap } from 'rxjs/operators';
-import { Subscription, Observable } from 'rxjs';
-import { AppUser } from '../../../shared/models/app-user';
+import { Subscription} from 'rxjs';
+
 
 @Component({
   selector: 'my-orders',
   templateUrl: './my-orders.component.html',
   styleUrls: ['./my-orders.component.scss']
 })
-export class MyOrdersComponent implements OnInit, OnDestroy {
-  orders: any;
+export class MyOrdersComponent implements OnDestroy {
+  orders: any[];
   orderSubscription: Subscription;
   userSubscription: Subscription;
   
@@ -41,11 +41,6 @@ export class MyOrdersComponent implements OnInit, OnDestroy {
         
       }
     });  
-    
-    
-  }
-
-  ngOnInit() {
   }
 
   ngOnDestroy(){

@@ -32,21 +32,29 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
   ],
   imports: [   
     SharedModule, 
-    RouterModule.forChild([      
+    // ROUTES
+    RouterModule.forChild([   
+        // BEGIN ROUTE   
         {path: 'products', component: ProductsComponent,
         data: {
           title: 'products',
+          // BEGIN BREADCRUMB DATA
           breadcrumb: [
             {
               label: 'Products',
               url: ''
             }
           ]
+          // END BREADCRUMB DATA
         },
       },
+      // END ROUTE
+
+      // BEGIN ROUTE
       { path: 'shopping-cart', component: ShoppingCartComponent,
         data: {
           title: 'shopping-cart',
+          // BEGIN BREADCRUMB DATA
           breadcrumb: [
             {
               label: 'Home',
@@ -57,11 +65,16 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
               url: '/shopping-cart'
             }
           ]
+          // END BREADCRUMB DATA
         },
-      },      
+      },  
+      // END ROUTE
+
+      // BEGIN ROUTE     
       { path: 'check-out', component: CheckOutComponent,
         data: {
           title: 'check-out',
+          // BEGIN BREADCRUMB DATA
           breadcrumb: [
             {
               label: 'Home',
@@ -76,11 +89,16 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
               url: '/check-out'
             }
           ]
+          // END BREADCRUMB DATA
         }, 
       canActivate: [AuthGuardService]},
+      // END ROUTE
+
+      // BEGIN ROUTE 
       { path: 'order-success/:id', component: OrderSuccessComponent,
         data: {
           title: 'Order Success',
+          // BEGIN BREADCRUMB DATA
           breadcrumb: [
             {
               label: 'Home',
@@ -99,10 +117,15 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
               url: '/order-success/:id'
             }            
           ]
-        }, canActivate: [AuthGuardService]},      
+          // END BREADCRUMB DATA
+        }, canActivate: [AuthGuardService]},     
+        // END ROUTE
+
+        // BEGIN ROUTE  
         {path: 'my/orders/:id', component: AdminViewOrderComponent,      
       data: {
         title: 'My Orders',
+        // BEGIN BREADCRUMB DATA
         breadcrumb: [
           {
             label: 'Home',
@@ -117,10 +140,15 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
             url: 'my/orders/:id'
           }
         ]
-      }, canActivate: [AuthGuardService]},          
+        // END BREADCRUMB DATA
+      }, canActivate: [AuthGuardService]},     
+      // END ROUTE
+
+      // BEGIN ROUTE    
       {path: 'my/orders', component: MyOrdersComponent,      
       data: {
         title: 'My Orders',
+        // BEGIN BREADCRUMB DATA
         breadcrumb: [
           {
             label: 'Home',
@@ -131,8 +159,9 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
             url: 'my/orders'
           }
         ]
+        // END BREADCRUMB DATA
       }, canActivate: [AuthGuardService]},
-      
+      // END ROUTE
     ]),
   ]
 })

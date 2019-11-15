@@ -29,27 +29,28 @@ $oshop-theme: mat-light-theme($oshop-primary, $oshop-accent, $oshop-warn);
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
-
+// BASIC RESETS
 html, body { height: 100%; overflow-x: hidden;}
-
 body { 
     margin: 0; 
     font-family: Roboto, "Helvetica Neue", sans-serif;
     padding-top:80px;
  }
 
+// THEME COLORS DEFINITION
 $primary-color: #c1d62e;
 $primary-color-accent: #a7ad83;
 $primary-color-dark: #99b100;
-
 .primary-color{
     color: #c1d62e;
 }
 
+// LOGO
 #logo {
     color: $primary-color;
 }
 
+// BTN PRIMARY CLASS OVERRIDE
 .btn-primary {
     color: #fff;
     background-color:$primary-color;
@@ -66,11 +67,13 @@ $primary-color-dark: #99b100;
     border-color: $primary-color;
 }
 
+// SEARCH BUTTON
 #search-button {
     background-color: $primary-color;
     border-color: rgb(207, 207, 207);
 }
 
+// BREADCRUMB
 .breadcrumb {
     background-color: $primary-color;
 }
@@ -104,7 +107,6 @@ $primary-color-dark: #99b100;
 
 // LOGIN WITH FACEBOOK BUTTON
 $fb-color : #3b5998;
-
 .btn-fb {
     color: floralwhite;
     border-color:floralwhite;

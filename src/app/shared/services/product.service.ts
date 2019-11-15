@@ -9,7 +9,6 @@ import { Product } from '../models/product';
   providedIn: 'root'
 })
 export class ProductService {
-  
 
   constructor(private db: AngularFireDatabase) { }
 
@@ -17,12 +16,9 @@ export class ProductService {
     this.db.list('/products').push(product);
   }
 
-  
-
   updateProduct(product, id){    
     return this.db.object('/products/'+id)
     .update(product);
-    
   }
 
   deleteProduct(id){

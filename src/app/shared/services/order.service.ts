@@ -7,9 +7,7 @@ import { Injectable } from '@angular/core';
 })
 export class OrderService {
   
-  constructor(private db: AngularFireDatabase, private shoppingCartService: ShoppingCartService) { 
-    
-  }
+  constructor(private db: AngularFireDatabase, private shoppingCartService: ShoppingCartService) { }
 
   async placeOrder(order){
     let result = await this.db.list('/orders').push(order)
