@@ -11,10 +11,15 @@
             <div class="col-md-4 offset-md-1 mt-md-0 mt-3 order-md-4 pt-4">
               <!-- Content -->
               <h5 class="calligraphy bold">Get in Touch<br></h5>
-              <h6 class="calligraphy">With us<br></h6>
-              <p>Always green, always fresh.</p>
-            </div>
+              <h6 class="calligraphy">With us<br></h6> 
+              <div class="pt-3">
+                <a href="https://www.linkedin.com/in/orestis-tanis/"><img src="https://img.icons8.com/color/50/000000/linkedin.png" class="circle"></a>                         
+                <a href="https://www.facebook.com/orestis.tanis.7"><img src="https://img.icons8.com/color/49/000000/facebook-new.png">    </a>
+                <a href="https://github.com/OrestisTanis"><img src="https://img.icons8.com/color/49/000000/github--v1.png"></a>       
+               </div>               
             <!-- END NAME & SLOGAN -->
+            </div>
+            
 
             <hr class="clearfix w-100 d-md-none pb-3">
 
@@ -25,7 +30,7 @@
                 <hr>
                 <ul class="list-unstyled">
                   <li>
-                    <a href="#!">Products</a>
+                    <a routerLink="/" (click)="scrollToTop()">Products</a>
                   </li>
                   <li>
                     <a href="#!">About Us</a>
@@ -34,7 +39,9 @@
                     <a href="#!">Shipping & Returns</a>
                   </li>
                   <li>
-                    <a href="#!">Contact Us</a>
+                      <a href = "mailto:tanisorestis@yahoo.com?subject = Feedback&body = Message">
+                        Send Feedback
+                      </a>
                   </li>
                 </ul>
               
@@ -43,19 +50,37 @@
 
               <!-- BEGING LINKS#1 -->
             <div class="col-6 col-md-3 offset-md-1 order-md-2 pt-4  pl-5 text-left">
-                <h5 class="text-uppercase">Links</h5>
+                <h5 class="text-uppercase">My account</h5>
                 <hr>
                 <ul class="list-unstyled">
                   <li>
-                    <a href="#!">View Cart</a>
+                    <a routerLink="/shopping-cart">View Cart</a>
                   </li>
                   <li>
                     <a href="#!">Order History</a>
                   </li>                  
-                  <li>
-                    <a href="#!">Link 4</a>
-                    <fa-icon [icon]="['fab', 'facebook']"></fa-icon>  
+                  <li *ngIf="appUser else anonymousUser">
+                    <a (click)="openVerticallyCentered(content)" class="hover">Logout</a> 
                   </li>
+                  <ng-template #anonymousUser>
+                      <li>
+                          <a routerLink="/login" (click)="closeNavbar()">Login<span class="sr-only">(current)</span></a>
+                      </li>
+                  </ng-template> 
+                  <ng-template #content let-modal>
+                    <div class="modal-header">
+                      <h4 class="modal-title">Modal title</h4>
+                      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>One fine body&hellip;</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+                    </div>
+                  </ng-template>                  
                 </ul>
               </div>
               <!-- END LINKS#1 -->
@@ -66,8 +91,8 @@
         
         <!-- BEGIN COPYRIGHT -->
         <div class="row">
-            <div class="text-center col-md-12 py-3">© 2019 Copyright:
-            <a> Orestis Tanis</a>
+            <div class="text-center col-md-12 py-3 copyright">
+            <a> © 2019 Copyright: Orestis Tanis</a>
             </div>
         </div>
         <!-- END COPYRIGHT -->

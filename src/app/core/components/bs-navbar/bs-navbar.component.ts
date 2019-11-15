@@ -28,7 +28,7 @@ export class BsNavbarComponent implements OnInit, OnDestroy {
   constructor(private auth: AuthService, 
     private shoppingCartService: ShoppingCartService,
     ) { 
-    auth.appUser$.subscribe(appUser => {
+    this.subscription = auth.appUser$.subscribe(appUser => {
       this.appUser = appUser;
     });
   }
