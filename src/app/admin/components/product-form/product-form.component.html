@@ -59,7 +59,7 @@
                         <!-- UPDATE PRODUCT BUTTON -->
                         <button  class="btn btn-primary" type="button" (click)="updateProduct()">Update Product</button>
                         <!-- DELETE PRODUCT BUTTON -->
-                        <button  class="btn btn-danger ml-2" type="button" (click)="deleteProduct()">Delete Product</button>
+                        <button  class="btn btn-danger ml-2" type="button" (click)="openDeleteProductModal(content)">Delete Product</button>
                     </div>
                 </ng-template> 
 
@@ -75,6 +75,12 @@
         <product-card class="d-flex justify-content-center" [product]="product" [show-actions]=false></product-card>
     </div>  
     <!-- END PRODUCT PREVIEW -->
+
+     <!-- BEGIN DELETE-PRODUCT MODAL -->
+    <ng-template #content let-modal>
+        <delete-product-modal [id]="id"></delete-product-modal>
+    </ng-template>
+    <!-- END DELETE-PRODUCT MODAL  -->
     
 </div>
 

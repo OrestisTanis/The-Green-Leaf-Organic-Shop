@@ -4,6 +4,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { Subscription, Observable } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-product-form',
@@ -22,7 +23,8 @@ export class ProductFormComponent implements OnDestroy{
   constructor(private categoryService: CategoryService, 
     private productService: ProductService, 
     private router: Router, 
-    private route:ActivatedRoute) { 
+    private route:ActivatedRoute,
+    private modalService: NgbModal) { 
 
     this.categories$ = this.categoryService.getCategories().valueChanges();
     
@@ -63,6 +65,10 @@ export class ProductFormComponent implements OnDestroy{
     this.router.navigate(['/admin/products']);
   }
 
+  openDeleteProductModal(content) {
+    this.modalService.open(content, { centered: true });    
+  }
+  
   ngOnDestroy(){
     if (this.subscription) this.subscription.unsubscribe();    
   }

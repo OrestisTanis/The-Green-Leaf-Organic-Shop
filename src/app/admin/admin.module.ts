@@ -7,13 +7,15 @@ import { AdminOrdersComponent } from './components/admin-orders/admin-orders.com
 import { AdminProductsComponent } from './components/admin-products/admin-products.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { AdminAuthGuardService } from './services/admin-auth-guard.service';
+import { DeleteProductModalComponent } from './components/delete-product-modal/delete-product-modal.component';
 
 
 @NgModule({    
   declarations: [
     AdminOrdersComponent,
     ProductFormComponent,
-    AdminProductsComponent,    
+    AdminProductsComponent,
+    DeleteProductModalComponent,    
   ],
   providers: [
     AuthGuardService, 
