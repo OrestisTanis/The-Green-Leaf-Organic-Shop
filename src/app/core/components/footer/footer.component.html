@@ -10,8 +10,15 @@
             <!-- BEGIN NAME & SLOGAN -->
             <div class="col-md-4 offset-md-1 mt-md-0 mt-3 order-md-4 pt-4">
               <!-- Content -->
-              <h5 class="calligraphy bold">Get in Touch<br></h5>
-              <h6 class="calligraphy">With us<br></h6> 
+              <div class="row">
+                <div class="col-12 d-flex align-items-bottom justify-content-center">
+                  <h5 class="calligraphy bold mb-0">Get in Touch</h5>
+                </div>
+                <div class="col-12 d-flex align-items-bottom  justify-content-center">
+                  <h6 class="calligraphy mb-0">With us</h6> 
+                </div>
+              </div>
+              
               <div class="pt-3">
                 <a href="https://www.linkedin.com/in/orestis-tanis/"><img src="https://img.icons8.com/color/50/000000/linkedin.png" class="circle"></a>                         
                 <a href="https://www.facebook.com/orestis.tanis.7"><img src="https://img.icons8.com/color/49/000000/facebook-new.png">    </a>
@@ -19,9 +26,6 @@
                </div>               
             <!-- END NAME & SLOGAN -->
             </div>
-            
-
-            <hr class="clearfix w-100 d-md-none pb-3">
 
            <!-- BEGING LINKS#1 -->
             <div class="col-6 col-md-3 order-md-1 pt-4 text-left">
@@ -30,7 +34,7 @@
                 <hr>
                 <ul class="list-unstyled">
                   <li>
-                    <a routerLink="/" (click)="scrollToTop()">Products</a>
+                    <a routerLink="/">Products</a>
                   </li>
                   <li>
                     <a href="#!">About Us</a>
@@ -53,39 +57,38 @@
                 <h5 class="text-uppercase">My account</h5>
                 <hr>
                 <ul class="list-unstyled">
+
+                  <!-- VIEW CART -->
                   <li>
                     <a routerLink="/shopping-cart">View Cart</a>
                   </li>
-                  <li>
+
+                  <!-- ORDER HISTORY -->
+                  <li *ngIf="appUser">
                     <a href="#!">Order History</a>
-                  </li>                  
+                  </li> 
+                  
+                  <!-- LOGOUT -->
                   <li *ngIf="appUser else anonymousUser">
-                    <a (click)="openVerticallyCentered(content)" class="hover">Logout</a> 
+                    <a (click)="openLogoutModal(content)" class="hover">Logout</a> 
                   </li>
+
+                  <!-- LOGIN -->
                   <ng-template #anonymousUser>
                       <li>
-                          <a routerLink="/login" (click)="closeNavbar()">Login<span class="sr-only">(current)</span></a>
+                          <a routerLink="/login">Login<span class="sr-only">(current)</span></a>
                       </li>
                   </ng-template> 
+
+                  <!-- BEGIN LOGOUT MODAL -->
                   <ng-template #content let-modal>
-                    <div class="modal-header">
-                      <h4 class="modal-title">Modal title</h4>
-                      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <p>One fine body&hellip;</p>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
-                    </div>
-                  </ng-template>                  
+                    <logout-modal></logout-modal>
+                  </ng-template>
+                  <!-- END LOGOUT MODAL  -->
+
                 </ul>
               </div>
-              <!-- END LINKS#1 -->
-
-              
+              <!-- END LINKS#1 -->              
           </div>
         </div>
         
@@ -96,7 +99,6 @@
             </div>
         </div>
         <!-- END COPYRIGHT -->
-
       </footer>
       <!-- END FOOTER -->
     </div>

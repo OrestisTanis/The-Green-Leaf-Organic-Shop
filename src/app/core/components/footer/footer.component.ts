@@ -1,8 +1,9 @@
 import { Router } from '@angular/router';
 import { AuthService } from './../../../shared/services/auth.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 import { Component } from '@angular/core';
 import { AppUser } from 'src/app/shared/models/app-user';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-footer',
@@ -23,20 +24,9 @@ export class FooterComponent {
     })
   }
 
-  openVerticallyCentered(content) {
-    this.modalService.open(content, { centered: true });
+  openLogoutModal(content) {
+    this.modalService.open(content, { centered: true });    
   }
 
-  logOut(){
-    this.router.navigate(['/']);  
-    this.authService.logout();      
-  }
-
-  scrollToTop() {    
-    let body = document.body; // Safari
-    let html = document.documentElement; // Chrome, Firefox, IE and Opera places the overflow at the <html> level, unless else is specified. Therefore, we use the documentElement property for these browsers
-
-    body.scrollTop -= 10000;
-    html.scrollTop -= 10000;
-  }
+  
 }

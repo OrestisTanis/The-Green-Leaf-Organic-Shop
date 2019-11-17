@@ -7,7 +7,7 @@ import { Subscription, Observable } from 'rxjs';
 import { ShoppingCart } from '../../../shared/models/shopping-cart';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { faLeaf } from '@fortawesome/free-solid-svg-icons';
-
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'bs-navbar',
@@ -27,14 +27,15 @@ export class BsNavbarComponent implements OnInit, OnDestroy {
 
   constructor(private auth: AuthService, 
     private shoppingCartService: ShoppingCartService,
+    private modalService: NgbModal
     ) { 
     this.subscription = auth.appUser$.subscribe(appUser => {
       this.appUser = appUser;
     });
   }
 
-  logout() {
-    this.auth.logout();
+  openLogoutModal(content) {
+    this.modalService.open(content, { centered: true });    
   }
   
   closeNavbar () {

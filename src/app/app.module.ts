@@ -65,7 +65,8 @@ import { ShoppingModule } from './shopping/shopping.module';
         },
       }, 
       //END ROUTE          
-    ]),
+    ],
+    { scrollPositionRestoration: 'enabled'}),
     BrowserAnimationsModule
   ],
   providers: [

@@ -39,6 +39,7 @@ export class AuthService {
     localStorage.removeItem('returnUrl');  
     this.router.navigateByUrl('/');
     this.afAuth.auth.signOut();
+    this.scrollToTop();
   }
 
   saveCurrentUrl(){
@@ -55,6 +56,14 @@ export class AuthService {
         }
       })
     )
-  }    
+  }   
+  
+  scrollToTop() {    
+    let body = document.body; // Safari
+    let html = document.documentElement; // Chrome, Firefox, IE and Opera places the overflow at the <html> level, unless else is specified. Therefore, we use the documentElement property for these browsers
+
+    body.scrollTop -= 10000;
+    html.scrollTop -= 10000;
+  }
 
 }

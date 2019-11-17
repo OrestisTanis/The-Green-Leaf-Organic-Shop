@@ -8,6 +8,7 @@ import { BsNavbarComponent } from './components/bs-navbar/bs-navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { LogoutModalComponent } from './components/logout-modal/logout-modal.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { FooterComponent } from './components/footer/footer.component';
     HomeComponent,    
     LoginComponent,
     BreadcrumbComponent,
-    FooterComponent
+    FooterComponent,
+    LogoutModalComponent
   ],
   exports:[
     BsNavbarComponent,

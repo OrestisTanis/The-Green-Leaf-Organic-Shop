@@ -59,7 +59,7 @@
                   <a class="dropdown-item" ngbDropdownItem routerLink="/admin/orders" (click)="closeNavbar()">Manage Orders</a>
                   <a class="dropdown-item" ngbDropdownItem routerLink="/admin/products" (click)="closeNavbar()">Manage Products</a>
                 </ng-container>
-                <a class="dropdown-item" ngbDropdownItem (click)="logout()">Log Out</a>
+                <a class="dropdown-item" ngbDropdownItem (click)="openLogoutModal(content)" class="hover">Log Out</a>
               </div>
           </li>
           <!-- END AUTHENTICATED USER LINKS -->
@@ -90,4 +90,10 @@
     </div>
 </div>
 <!-- END BREADCRUMB -->
+
+ <!-- BEGIN LOGOUT MODAL -->
+ <ng-template #content let-modal>
+    <logout-modal></logout-modal>
+  </ng-template>
+  <!-- END LOGOUT MODAL  -->
 
