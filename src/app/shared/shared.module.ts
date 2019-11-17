@@ -18,8 +18,9 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { NgbModule, NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { CustomFormsModule } from 'ng2-validation';
 import { FormsModule } from '@angular/forms';
-import { MatTableModule, MatPaginatorModule, MatSliderModule, MatSortModule } from '@angular/material';
+import { MatTableModule, MatPaginatorModule, MatSliderModule, MatSortModule, MatProgressSpinnerModule } from '@angular/material';
 import { NgDynamicBreadcrumbModule } from 'ng-dynamic-breadcrumb';
+
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { NgDynamicBreadcrumbModule } from 'ng-dynamic-breadcrumb';
     MatSliderModule,
     MatSortModule, 
     NgDynamicBreadcrumbModule,
+    MatProgressSpinnerModule,
     RouterModule.forChild([
       // BEGIN ROUTE
       {path: 'admin/orders/:id', component: AdminViewOrderComponent,
@@ -93,7 +95,8 @@ import { NgDynamicBreadcrumbModule } from 'ng-dynamic-breadcrumb';
     MatTableModule,
     MatPaginatorModule,
     MatSliderModule,
-    MatSortModule,         
+    MatSortModule,  
+    MatProgressSpinnerModule       
   ],
 })
 export class SharedModule { }

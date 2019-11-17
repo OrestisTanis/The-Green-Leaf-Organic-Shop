@@ -180,3 +180,8 @@ $google-color : #DB4437;
     border-color: $primary-color;
 }
 
+// MAT-SPINNER
+.mat-progress-spinner circle, .mat-spinner circle {
+    stroke: $primary-color;
+}
+

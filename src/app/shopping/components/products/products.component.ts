@@ -72,8 +72,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       this.activePage = 1;
 
       this.populatePageProducts(this.filteredProducts$);
-
-      // Finding the Number of Pages
+      
       this.setPageNumber(this.filteredProducts$);
     });
   }
