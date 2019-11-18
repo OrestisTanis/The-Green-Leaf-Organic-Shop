@@ -16,14 +16,9 @@ export class ShoppingCartComponent implements OnInit {
   constructor(private shoppingCartService: ShoppingCartService,
     private modalService: NgbModal) {}
 
-  async ngOnInit() {
-    console.log(this.cart$);
+  async ngOnInit() {    
     this.cart$ = await this.shoppingCartService.getCart();
   } 
-
-  // async clearCart(){
-  //   await this.shoppingCartService.clearCart();
-  // }
 
   openClearCartModal(content) {
     this.modalService.open(content, { centered: true });    

@@ -19,8 +19,7 @@ export class FooterComponent {
     private router:Router,
     private modalService: NgbModal) { 
     authService.appUser$.subscribe(appUser => {
-      this.appUser = appUser;
-      console.log(this.appUser);
+      this.appUser = appUser;      
     })
   }
 

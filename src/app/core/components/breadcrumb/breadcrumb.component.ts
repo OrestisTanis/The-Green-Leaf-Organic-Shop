@@ -32,8 +32,7 @@ export class BreadcrumbComponent implements OnInit {
         this.breadcrumbs = [];
         let url = snapshot.url;
         let routeData = route.snapshot.data;
-
-        console.log(routeData);
+        
         let label = routeData['breadcrumb'];
         let params = snapshot.root.params;
         
@@ -41,8 +40,7 @@ export class BreadcrumbComponent implements OnInit {
           url: url,
           label: label,
           params: params
-        });
-        console.log(this.breadcrumbs);
+        });        
 
       });
 
