@@ -24,5 +24,15 @@ span {
     color:rgb(244, 255, 245);
 }
 
+.breadcrumb{
+    margin-top:80px;
+    padding:10px 16px 10px 16px !important;
+
+    // Large devices (desktops, 992px and up)
+    @media (min-width: 992px) { margin-top:83px !important; }
+}
+
+
+
 
 
