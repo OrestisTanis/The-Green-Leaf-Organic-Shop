@@ -5,6 +5,7 @@ import { Subscription, Observable } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Product } from 'src/app/shared/models/product';
 
 @Component({
   selector: 'app-product-form',
@@ -14,7 +15,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class ProductFormComponent implements OnDestroy{
   categories$:Observable<any>;
   onSubmitError:boolean=false;
-  product={};                   // Initialize empty object
+  product: Product;                  
   creatingNewProduct=true;      // Flag to dintinguish between CreationOfNew/UpdateExisting states
   id: string;                   // If any, we get it from the params
 
@@ -37,7 +38,11 @@ export class ProductFormComponent implements OnDestroy{
       this.subscription = this.productService.getProduct(this.id).valueChanges().subscribe(p => this.product = p);
       this.creatingNewProduct = false;
     }
-    else { this.creatingNewProduct=true;}
+    else { 
+      this.creatingNewProduct=true;
+      this.product = { };
+    }
+    
   }
   
   onSubmit(f: NgForm) {   // Called when buttons within the form of 'type=submit' are clicked
