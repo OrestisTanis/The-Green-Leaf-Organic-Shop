@@ -14,6 +14,7 @@ import { ShoppingCartService } from './services/shopping-cart-service';
 import { SharedModule } from './shared/shared.module';
 import { ProductsComponent } from './shopping/components/products/products.component';
 import { ShoppingModule } from './shopping/shopping.module';
+import { PrivacyPolicyComponent } from './core/components/privacy-policy/privacy-policy.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,26 @@ import { ShoppingModule } from './shopping/shopping.module';
           // END BREADCRUMB DATA
         },
       }, 
-      //END ROUTE          
+      //END ROUTE   
+      //BEGIN ROUTE    
+      { path: 'privacy-policy', component: PrivacyPolicyComponent,
+        data: {
+          title: 'privacy policy',
+          // BEGIN BREADCRUMB DATA
+          breadcrumb: [
+            {
+              label: 'Home',
+              url: '/'
+            },
+            {
+              label: 'Privacy Policy',
+              url: '/privacy-policy'
+            }
+          ]
+          // END BREADCRUMB DATA
+        },
+      }, 
+      //END ROUTE                 
     ],
     { scrollPositionRestoration: 'enabled'}),
     BrowserAnimationsModule

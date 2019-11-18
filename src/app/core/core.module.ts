@@ -9,6 +9,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LogoutModalComponent } from './components/logout-modal/logout-modal.component';
+import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { LogoutModalComponent } from './components/logout-modal/logout-modal.com
     LoginComponent,
     BreadcrumbComponent,
     FooterComponent,
-    LogoutModalComponent
+    LogoutModalComponent,
+    PrivacyPolicyComponent
   ],
   exports:[
     BsNavbarComponent,
