@@ -12,6 +12,7 @@ import { ProductsComponent } from './components/products/products.component';
 import { ShippingFormComponent } from './components/shipping-form/shipping-form.component';
 import { ShoppingCartSummaryComponent } from './components/shopping-cart-summary/shopping-cart-summary.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { ClearCartModalComponent } from './components/clear-cart-modal/clear-cart-modal.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
     ShoppingCartComponent,
     CheckOutComponent,
     OrderSuccessComponent,
-    ProductsFilterComponent, 
+    ProductsFilterComponent,
+    ClearCartModalComponent, 
   ],
   providers: [
     AuthGuardService

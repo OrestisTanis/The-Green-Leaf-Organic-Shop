@@ -6,12 +6,12 @@
 
 <!-- BEGIN SEARCH INPUT FIELD -->
 <p>
-    <input #query (keyup)="filter(query.value)" type="text" class="form-control" placeholder="Search...">
+    <input #query (keyup)="filter(query.value)" type="text" class="form-control" placeholder="Search for products...">
 </p>
 <!-- END SEARCH INPUT FIELD -->
 
 <!-- BEGIN MAT-TABLE -->
-<div class="mat-elevation-z8" *ngIf="products; else loading">
+<div class="mat-elevation-z8 mt-3" [hidden]="!products">
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
         <!-- POSITION COLUMN -->
         <ng-container matColumnDef="position">
@@ -59,10 +59,12 @@
 <!-- END MAT-TABLE -->
 
 <!-- BEGIN LOADING -->
-<ng-template #loading>   
-    <div>           
-        <mat-spinner ></mat-spinner>
-        <h4 class="mt-3">Loading...</h4>
+<div [hidden]="products">                  
+    <div class="d-flex justify-content-center" > 
+        <div>
+            <mat-spinner ></mat-spinner>
+            <h4 class="mt-3">Loading...</h4>
+        </div>
     </div> 
-</ng-template>
+</div>
 <!-- END LOADING -->

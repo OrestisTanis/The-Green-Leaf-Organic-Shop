@@ -56,8 +56,10 @@
                 <hr>
                 <a class="dropdown-item" ngbDropdownItem routerLink="/my/orders" (click)="closeNavbar()">My Orders</a>
                 <ng-container *ngIf="appUser.isAdmin">
-                  <a class="dropdown-item" ngbDropdownItem routerLink="/admin/orders" (click)="closeNavbar()">Manage Orders</a>
-                  <a class="dropdown-item" ngbDropdownItem routerLink="/admin/products" (click)="closeNavbar()">Manage Products</a>
+                  <a class="dropdown-item d-flex align-items-center" ngbDropdownItem routerLink="/admin/orders" (click)="closeNavbar()">
+                    Manage Orders&nbsp;<span class="badge badge-light">admin</span>
+                  </a>
+                  <a class="dropdown-item d-flex align-items-center" ngbDropdownItem routerLink="/admin/products" (click)="closeNavbar()">Manage Products&nbsp;<span class="badge badge-light">admin</span></a>
                 </ng-container>
                 <a class="dropdown-item" ngbDropdownItem (click)="openLogoutModal(content)" class="hover">Log Out</a>
               </div>
