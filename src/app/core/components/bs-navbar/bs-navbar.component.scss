@@ -1,5 +1,4 @@
 .navbar {
-
     padding: 15px 0 15px 0px;
     box-shadow: 0 4px 4px -4px rgba(0,0,0,.25);
 
@@ -10,7 +9,9 @@
         max-width:90px;
         max-height:90px;
     }
-    
+    .logo:hover {
+        transform: rotate(360deg);
+    }    
     p, .slogan
     {
         color:gray;
@@ -36,7 +37,8 @@
             border:none;
     
             hr{
-               margin-top:14.5px;
+               margin-top:5px;
+               margin-bottom:12px;
             }
             .dropdown-item.active, .dropdown-item:active {
                 color: #fff;
@@ -56,6 +58,8 @@
     position:fixed;
     z-index:1029!important;;
 }
+
+
 
 
 
