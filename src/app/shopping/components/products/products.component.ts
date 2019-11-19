@@ -33,6 +33,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   activePage: number = 1;
   itemsPerPage: number = 4;
   numberOfPages: number;
+  result: string;
   pageArray(n: number): any[] {
     return Array(n);
   }
@@ -90,6 +91,15 @@ export class ProductsComponent implements OnInit, OnDestroy {
     let finalProds = this.applyPriceFilter(this.shownProducts$);
 
     this.populatePageProducts(finalProds);
+
+    this.result=query;
+  }
+
+  //Check query value to clear filter
+  modelChange(query){
+    if (query==""){
+      this.filterByKeyWord("");
+    }
   }
 
   // Called when the user filters results by category
