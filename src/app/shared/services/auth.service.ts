@@ -32,7 +32,7 @@ export class AuthService {
   loginFacebook(){
     this.saveCurrentUrl();
     let provider = new firebase.auth.FacebookAuthProvider();    
-    this.afAuth.auth.signInWithPopup(provider)
+    this.afAuth.auth.signInWithRedirect(provider)
   }
  
   logout() {
