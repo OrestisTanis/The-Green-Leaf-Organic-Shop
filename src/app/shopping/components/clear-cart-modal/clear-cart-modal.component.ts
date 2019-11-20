@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { faLeaf } from '@fortawesome/free-solid-svg-icons';
-import { ShoppingCartService } from '../../../services/shopping-cart-service';
+import { ShoppingCartService } from '../../../shared/services/shopping-cart-service';
 
 @Component({
   selector: 'clear-cart-modal',
