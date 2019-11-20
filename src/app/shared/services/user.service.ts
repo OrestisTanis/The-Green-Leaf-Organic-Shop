@@ -13,11 +13,12 @@ export class UserService {
   constructor(private db: AngularFireDatabase) {    
   }
 
-  save(user: firebase.User){  //Saves username and email to our firebase db  
+  save(user: firebase.User){  // Saves username and email to our firebase db  
     this.db.object('/users/'+user.uid)
     .update({ 
       name: user.displayName,
-      email: user.email
+      email: user.email,
+      isAdmin: true // For Demonstration Purposes, all authenticated users have administrator privileges
     });
   }
 
