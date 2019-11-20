@@ -27,6 +27,8 @@ export class LogoutModalComponent {
     this.modalService.dismissAll();
   }
 
+  
+
 
 
 }
