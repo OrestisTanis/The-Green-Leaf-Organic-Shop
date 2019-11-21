@@ -3,7 +3,7 @@
 
 The Green Leaf is a simple e-commerce application built with Angular 8, Bootstrap 4 and Firebase, where:
 - Users are able to filter their searches for products and even anonymous users can add items to a shopping cart.
-- Authentication (currently implemented via Firebase's Google OAuth && Facebook OAuth APIs) is necessary for 'checking out' as well as viewing user order history.
+- User authentication (currently through Google or Facebook accounts) is necessary for 'checking out' as well as viewing user order history.
 - Users with administrator privileges can create/modify/delete products via the application's user interface, as well as view the shop's entire client order history. For demonstration purposes, all authenticated users get administrator privileges.
 - All app, user and product data is stored in a Firebase Real-time Database.
 
@@ -13,7 +13,7 @@ The Green Leaf is a simple e-commerce application built with Angular 8, Bootstra
 ## Features 
 The Green Leaf is an Angular project with:
 - [Firebase Real-time Database](https://firebase.google.com/docs/database) (implemented with [angularfire2](https://github.com/angular/angularfire)).
-- [Firebase Authentication](https://firebase.google.com/docs/auth) (implemented via Firebase's Google OAuth && Facebook OAuth APIs)
+- [Firebase Authentication](https://firebase.google.com/docs/auth) (implemented with [angularfire2](https://github.com/angular/angularfire)).
 - [Bootstrap 4](https://getbootstrap.com/) (implemented with [NG Bootstrap](https://ng-bootstrap.github.io/)).
 - [Font Awesome](https://github.com/FortAwesome/angular-fontawesome)
 - [RxJS](https://github.com/ReactiveX/rxjs)
