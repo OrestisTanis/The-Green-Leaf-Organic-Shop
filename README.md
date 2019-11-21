@@ -13,7 +13,7 @@ The Green Leaf is a simple e-commerce application built with Angular 8, Bootstra
 ## Features 
 The Green Leaf is an Angular project with:
 - [Firebase Real-time Database](https://firebase.google.com/docs/database) (implemented with [angularfire2](https://github.com/angular/angularfire)).
-- [Firebase Authentication](https://firebase.google.com/docs/auth)
+- [Firebase Authentication](https://firebase.google.com/docs/auth) (implemented via Firebase's Google OAuth && Facebook OAuth APIs)
 - [Bootstrap 4](https://getbootstrap.com/) (implemented with [NG Bootstrap](https://ng-bootstrap.github.io/)).
 - [Font Awesome](https://github.com/FortAwesome/angular-fontawesome)
 - [RxJS](https://github.com/ReactiveX/rxjs)
