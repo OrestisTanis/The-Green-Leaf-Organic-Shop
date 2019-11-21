@@ -1,27 +1,32 @@
-# Oshop
+## The Green Leaf Organic Shop
+(This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.9.)
+The Green Leaf is a simple e-commerce application built with Angular 8, Bootstrap 4 and Firebase, where:
+-Users are able to filter their searches for products and even anonymous users can add items to a shopping cart.
+-Authentication (currently implemented via Firebase's Google OAuth && Facebook OAuth APIs) is necessary for 'checking out' as well as viewing user order history.
+-Users with administrator privileges can create/modify/delete products via the application's user interface, as well as view the shop's entire client order history. For demonstration purposes, all authenticated users get administrator privileges.
+-All app, user and product data is stored in a Firebase Real-time Database.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.9.
+## Live Demo Link
+[https://oshop-bb9c1.firebaseapp.com/](https://oshop-bb9c1.firebaseapp.com/)
 
-## Development server
+## Features 
+The Green Leaf is an Angular project with:
+-[Firebase Real-time Database](https://firebase.google.com/docs/database) (implemented with [angularfire2](https://github.com/angular/angularfire)).
+-[Firebase Authentication](https://firebase.google.com/docs/auth)
+-[Bootstrap 4](https://getbootstrap.com/) (implemented with [NG Bootstrap](https://ng-bootstrap.github.io/)).
+-[Font Awesome](https://github.com/FortAwesome/angular-fontawesome)
+-[RxJS](https://github.com/ReactiveX/rxjs)
+-[Angular Material](https://material.angular.io/) (implemented with a [data table](https://material.angular.io/components/categories/tables))
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Running the Application Locally
+```
+git clone https://github.com/OrestisTanis/The-Green-Leaf-Organic-Shop.git
+cd The-Green-Leaf-Organic-Shop/
+npm install
+ng serve
+```
+Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
