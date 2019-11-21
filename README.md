@@ -17,7 +17,7 @@ The Green Leaf is an Angular project with:
 - [Bootstrap 4](https://getbootstrap.com/) (implemented with [NG Bootstrap](https://ng-bootstrap.github.io/)).
 - [Font Awesome](https://github.com/FortAwesome/angular-fontawesome)
 - [RxJS](https://github.com/ReactiveX/rxjs)
-- [Angular Material](https://material.angular.io/) (implemented with a [data table](https://material.angular.io/components/categories/tables))
+
 
 ## Running the Application Locally
 ```
