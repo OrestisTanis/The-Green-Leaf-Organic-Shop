@@ -1,22 +1,23 @@
 ## The Green Leaf Organic Shop
 (This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.9.)
+
 The Green Leaf is a simple e-commerce application built with Angular 8, Bootstrap 4 and Firebase, where:
--Users are able to filter their searches for products and even anonymous users can add items to a shopping cart.
--Authentication (currently implemented via Firebase's Google OAuth && Facebook OAuth APIs) is necessary for 'checking out' as well as viewing user order history.
--Users with administrator privileges can create/modify/delete products via the application's user interface, as well as view the shop's entire client order history. For demonstration purposes, all authenticated users get administrator privileges.
--All app, user and product data is stored in a Firebase Real-time Database.
+- Users are able to filter their searches for products and even anonymous users can add items to a shopping cart.
+- Authentication (currently implemented via Firebase's Google OAuth && Facebook OAuth APIs) is necessary for 'checking out' as well as viewing user order history.
+- Users with administrator privileges can create/modify/delete products via the application's user interface, as well as view the shop's entire client order history. For demonstration purposes, all authenticated users get administrator privileges.
+- All app, user and product data is stored in a Firebase Real-time Database.
 
 ## Live Demo Link
 [https://oshop-bb9c1.firebaseapp.com/](https://oshop-bb9c1.firebaseapp.com/)
 
 ## Features 
 The Green Leaf is an Angular project with:
--[Firebase Real-time Database](https://firebase.google.com/docs/database) (implemented with [angularfire2](https://github.com/angular/angularfire)).
--[Firebase Authentication](https://firebase.google.com/docs/auth)
--[Bootstrap 4](https://getbootstrap.com/) (implemented with [NG Bootstrap](https://ng-bootstrap.github.io/)).
--[Font Awesome](https://github.com/FortAwesome/angular-fontawesome)
--[RxJS](https://github.com/ReactiveX/rxjs)
--[Angular Material](https://material.angular.io/) (implemented with a [data table](https://material.angular.io/components/categories/tables))
+- [Firebase Real-time Database](https://firebase.google.com/docs/database) (implemented with [angularfire2](https://github.com/angular/angularfire)).
+- [Firebase Authentication](https://firebase.google.com/docs/auth)
+- [Bootstrap 4](https://getbootstrap.com/) (implemented with [NG Bootstrap](https://ng-bootstrap.github.io/)).
+- [Font Awesome](https://github.com/FortAwesome/angular-fontawesome)
+- [RxJS](https://github.com/ReactiveX/rxjs)
+- [Angular Material](https://material.angular.io/) (implemented with a [data table](https://material.angular.io/components/categories/tables))
 
 ## Running the Application Locally
 ```
